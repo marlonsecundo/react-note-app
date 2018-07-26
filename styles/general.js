@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
-import { metrics } from '.';
+import metrics from './metrics';
 
-const styles = StyleSheet.create({
+const general = {
     container: {
+        flex: 1,
         padding: metrics.padding,
-    }
-});
+    },
+};
 
-export default styles;
+export default general;
