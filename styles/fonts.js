@@ -1,3 +1,6 @@
 export default {
-    family: "Open Sans",
+    family: "Jaapokki",
+    title: 25,
+    subtitle: 20,
+    text: 16,
 }
