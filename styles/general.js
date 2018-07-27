@@ -6,6 +6,7 @@ const general = {
         flex: 1,
         padding: metrics.padding,
     },
+    
 };
 
 export default general;

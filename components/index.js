@@ -1,3 +1,3 @@
 import Menu from './Menu';
-
-export { Menu };
+import ListNote from './ListNote';
+export { Menu, ListNote };

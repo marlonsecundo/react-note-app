@@ -5,7 +5,8 @@ const styles = StyleSheet.create({
     {
         ...general.container,
         backgroundColor: colors.background,
-    }
+        padding: 0,
+    },
 
 });
 
