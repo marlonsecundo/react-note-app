@@ -4,7 +4,7 @@ import styles from './styles';
 export class ListNote extends Component {
     render() {
         return (
-            <View>
+            <View style={styles.rootContainer}>
                 <Text> Lista de Notas </Text>
             </View>
         )

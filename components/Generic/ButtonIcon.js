@@ -9,11 +9,9 @@ class ButtonIcon extends React.PureComponent {
 
     render() {
         return (
-            <View style={styles.container}>
-                <RippleView  color={colors.secondary} >
+            <RippleView color={colors.secondary} >
                 <Icon name={this.props.icon} color={colors.secondary} size={fonts.icon}></Icon>
-                </RippleView>
-            </View>
+            </RippleView>
         )
     }
 }
@@ -21,7 +19,7 @@ class ButtonIcon extends React.PureComponent {
 const styles = StyleSheet.create({
     container:
     {
-        flex: 1,
+        backgroundColor: 'green',
     },
 
 });

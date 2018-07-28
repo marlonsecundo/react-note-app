@@ -12,9 +12,7 @@ class RippleView extends React.PureComponent {
         this.state = {
             scale: new Animated.Value(this.initialScale),
             opacity: new Animated.Value(this.initialOpacity),
-            height: 0,
-            width: 0,
-            radius: 0,
+            size : 0,
         };
 
 
@@ -40,17 +38,17 @@ class RippleView extends React.PureComponent {
     render() {
 
         return (
-            <TouchableWithoutFeedback style={{flex:1}} onLayout={(event) => { this.onLayout(event) }} onPressIn={() => { this.onPressedIn() }} onPressOut={() => { this.onPressedOut() }}>
+            <TouchableWithoutFeedback style={{flexGrow: 0, justifyContent: 'center', alignItems: 'center'}} onLayout={(event) => { this.onLayout(event) }} onPressIn={() => { this.onPressedIn() }} onPressOut={() => { this.onPressedOut() }}>
                 <View
-                    style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                    style={{ padding: 10, flexGrow: 0, justifyContent: 'center', alignItems: 'center' }}>
                     <Animated.View
                         style={{
                             position: 'absolute',
-                            height: this.state.radius * .9,
-                            width: this.state.radius * .9,
+                            height: this.state.size * .9,
+                            width: this.state.size * .9,
                             transform: [{ scale: this.state.scale }],
                             opacity: this.state.opacity,
-                            borderRadius: this.state.radius / 2,
+                            borderRadius: this.state.size / 2,
                             backgroundColor: this.props.color || 'black',
                         }}
                     />
@@ -63,8 +61,12 @@ class RippleView extends React.PureComponent {
     onLayout(event) {
         let width = event.nativeEvent.layout.width;
         let height = event.nativeEvent.layout.height;
-        let radius = width < height ? width : height;
-        this.setState({ width: width, height: height, radius: radius })
+        let size = width < height ? width : height;
+        console.log("AAAAAAAAAAAAAAAA");
+        console.log(width);
+        console.log(height);
+        console.log(size);
+        this.setState({ size: 46 })
     }
 }
 
