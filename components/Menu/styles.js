@@ -6,6 +6,7 @@ const styles = StyleSheet.create({
     {
         ...general.container,
         padding: 0,
+        paddingBottom: metrics.padding,
     },
     circleContainer:
     {
@@ -25,6 +26,13 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
         flexDirection: 'row',
         justifyContent: 'space-between',
+    },
+    title:
+    {
+        color: colors.secondary,
+        fontFamily: fonts.family,
+        fontSize: fonts.title,
+        fontStyle: 'italic',
     },
     btPlusContainer:
     {

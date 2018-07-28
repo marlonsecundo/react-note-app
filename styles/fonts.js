@@ -1,7 +1,8 @@
 export default {
     family: "Jaapokki",
-    title: 25,
-    subtitle: 20,
+    title: 20,
+    subtitle: 18,
     text: 16,
     icon: 26,
+    bell: 13,
 }

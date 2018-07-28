@@ -9,7 +9,7 @@ export default class Home extends Component {
         return (
             <View style={styles.rootContainer}>
                 <Menu></Menu>
-                <ListNote></ListNote>
+                <ListNote></ListNote> 
             </View>
         );
     }

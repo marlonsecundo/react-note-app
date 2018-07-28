@@ -1,13 +1,19 @@
 import { StyleSheet } from 'react-native';
-import { colors, fonts, general } from '../../styles';
+import { colors, fonts, general, metrics } from '../../styles';
 const styles = StyleSheet.create({
 
     rootContainer:
     {
         ...general.container,
-        padding: 0,
         flexGrow: 4,
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        alignItems: 'flex-start',
     },
+    container:
+    {
+        
+    }
 
 });
 

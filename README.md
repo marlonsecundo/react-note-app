@@ -8,7 +8,7 @@ Notes app using react with redux
 ## UI References
 
 * [`Vector Icons`](https://github.com/oblador/react-native-vector-icons)
-* [`Grids`](https://flow.opera.com/ext/v1/index.html
+* [`Grids`](https://flow.opera.com/ext/v1/index.html)
 * [`Transition`](https://medium.com/react-native-motion/transition-challenge-9bc9fdef56c7)
 * [`Ripple Effect`](https://medium.com/react-native-motion/ripple-effect-in-react-native-1cb0ad568e91)
 

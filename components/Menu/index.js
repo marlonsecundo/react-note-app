@@ -22,6 +22,7 @@ export class Menu extends Component {
                 <View style={styles.menuContainer}>
                     <View style={styles.topMenuContainer}>
                         <ButtonIcon icon="more-horizontal" color={colors.secondary}></ButtonIcon>
+                        <Text style={styles.title}>ATTACH NOTES</Text>
                         <ButtonIcon icon="trash-2" color={colors.secondary}></ButtonIcon>
                     </View>
                     <View style={styles.btPlusContainer}>
