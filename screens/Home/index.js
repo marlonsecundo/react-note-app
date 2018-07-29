@@ -10,6 +10,9 @@ export default class Home extends Component {
             <View style={styles.rootContainer}>
                 <Menu></Menu>
                 <ListNote></ListNote> 
+                <View style={styles.footer}>
+                    <Text style={styles.text}>As notas serão excluídas em 5h</Text>
+                </View>
             </View>
         );
     }

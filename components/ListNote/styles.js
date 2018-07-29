@@ -6,16 +6,13 @@ const styles = StyleSheet.create({
     {
         ...general.container,
         flexGrow: 4,
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        alignItems: 'flex-start',
     },
     container:
     {
-        
+
     }
 
 });
 
 export default styles;
-export { colors, fonts };
+export { colors, fonts, metrics };

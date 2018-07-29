@@ -1,4 +1,10 @@
 {
   "name": "Attach",
-  "displayName": "Attach"
+  "displayName": "Attach",
+  "expo": {
+    "slug": "Attach",
+    "name": "Attach",
+    "sdkVersion": "29.0.0",
+    "entryPoint": "c:\\Users\\Marlo\\Desktop\\React\\Attach\\.vscode\\exponentIndex.js"
+  }
 }

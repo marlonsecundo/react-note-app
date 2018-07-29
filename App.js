@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { createStackNavigator } from 'react-navigation';
 import { Home, Settings } from './screens';
-
 const RootStack = createStackNavigator(
   {
     HomeScreen: Home,
