@@ -41,18 +41,14 @@ export class ListNote extends Component {
         return (
             <View style={styles.rootContainer}>
                 <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.noteContainer} >
-                    <View style={this.topContainerSpace()}>
-
-                    </View>
+                    <View style={this.topContainerSpace()}></View>
                     {this.state.notes.map((value, key) => {
                         return (
                             <Note key={key}>
                                 {value.nota}
                             </Note>)
                     })}
-                    <View style={this.bottomContainerSpace()}>
-
-                    </View>
+                    <View style={this.bottomContainerSpace()}></View>
 
                 </ScrollView>
             </View>
@@ -61,7 +57,7 @@ export class ListNote extends Component {
 
     topContainerSpace = () => {
         let screenWidth = Dimensions.get("window").width - metrics.padding * 2;
-        return  {
+        return {
             width: screenWidth,
             height: this.props.heightSpace.header,
         }
@@ -70,7 +66,7 @@ export class ListNote extends Component {
     bottomContainerSpace = () => {
         let screenWidth = Dimensions.get("window").width - metrics.padding * 2;
 
-        console.log("Agora: "+this.props.heightSpace.footer);
+        console.log("Agora: " + this.props.heightSpace.footer);
 
         return {
             width: screenWidth,

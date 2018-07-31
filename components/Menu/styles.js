@@ -2,6 +2,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 import { colors, metrics, fonts, general } from '../../styles';
 
 const screenWidth = Dimensions.get("window").width;
+const height =  screenWidth - (screenWidth / 1.5);
 
 const styles = StyleSheet.create({
 
@@ -13,6 +14,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         width: screenWidth,
         opacity: 1,
+        paddingBottom: 3,
     },
     circleContainer:
     {
@@ -27,15 +29,15 @@ const styles = StyleSheet.create({
     },
     menuContainer:
     {
-        flexDirection: 'column',
         elevation: 3,
-    },
-    topMenuContainer:
-    {
+        minHeight: 65,
+        height: height,
         padding: metrics.padding,
-        paddingBottom: 5,
+        paddingBottom: 0,
         flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'flex-start',
+        opacity: 1,
     },
     title:
     {
@@ -44,13 +46,11 @@ const styles = StyleSheet.create({
         fontSize: fonts.title,
         fontStyle: 'italic',
     },
-    btPlusContainer:
+    plusContainer:
     {
-        marginBottom: 10,
+        alignSelf: 'flex-end',
+        marginBottom: 5,
     }
-
-
-
 
 });
 
