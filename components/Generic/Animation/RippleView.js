@@ -62,10 +62,6 @@ class RippleView extends React.PureComponent {
         let width = event.nativeEvent.layout.width;
         let height = event.nativeEvent.layout.height;
         let size = width < height ? width : height;
-        console.log("AAAAAAAAAAAAAAAA");
-        console.log(width);
-        console.log(height);
-        console.log(size);
         this.setState({ size: 46 })
     }
 }

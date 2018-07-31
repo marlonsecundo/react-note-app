@@ -7,19 +7,7 @@ const styles = StyleSheet.create({
         backgroundColor: colors.background,
         padding: 0,
     },
-    footer:
-    {
-        padding: 10,
-        backgroundColor: colors.primary,
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
-    },
-    text:
-    {
-        color: colors.secondary,
-        fontSize: fonts.text,
-        textAlign: 'center'
-    }
+
 
 });
 

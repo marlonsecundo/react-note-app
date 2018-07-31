@@ -1,19 +1,29 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { colors, metrics, fonts, general } from '../../styles';
+
+const screenWidth = Dimensions.get("window").width;
+
 const styles = StyleSheet.create({
 
     rootContainer:
     {
         ...general.container,
         padding: 0,
-        paddingBottom: metrics.padding,
+        zIndex: 1,
+        position: 'absolute',
+        width: screenWidth,
+        opacity: 1,
     },
     circleContainer:
     {
         position: 'absolute',
         flex: 1,
         backgroundColor: colors.primary,
-        elevation: 1,
+        elevation: 3,
+        minHeight: screenWidth,
+        width: screenWidth,
+        transform: [{ scaleX: 1.5 }, { translateY: - screenWidth / 1.5 }],
+        borderRadius: screenWidth / 2,
     },
     menuContainer:
     {
@@ -23,7 +33,7 @@ const styles = StyleSheet.create({
     topMenuContainer:
     {
         padding: metrics.padding,
-        paddingBottom: 10,
+        paddingBottom: 5,
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
