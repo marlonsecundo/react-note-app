@@ -6,10 +6,12 @@ const styles = StyleSheet.create({
     {
         ...general.container,
         flexGrow: 4,
+        paddingTop: 0,
     },
-    container:
+    noteContainer:
     {
-
+        flexDirection: 'row',
+        flexWrap: 'wrap',
     }
 
 });

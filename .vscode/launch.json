@@ -5,28 +5,15 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "chrome",
-            "request": "launch",
-            "name": "Launch Chrome",
-            "url": "http://localhost:8081/debugger-ui/",
-            "webRoot": "${workspaceFolder}"
-        },
-        {
-            "type": "chrome",
-            "request": "attach",
-            "name": "Attach to Chrome",
-            "port": 9222,
-            "webRoot": "${workspaceFolder}"
-        },
-        {
-            "name": "Attach to packager",
+            "name": "Debug Android",
             "program": "${workspaceRoot}/.vscode/launchReactNative.js",
             "type": "reactnative",
-            "request": "attach",
-            "port": 9222, // change this with your port
+            "request": "launch",
+            "platform": "android",
             "sourceMaps": true,
             "outDir": "${workspaceRoot}/.vscode/.react"
         }
+      
         
     ]
 }

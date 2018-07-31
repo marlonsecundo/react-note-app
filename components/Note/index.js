@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { Text, View, TouchableOpacity, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
-import styles, { fonts, colors } from './styles';
+import styles, { fonts, colors, metrics } from './styles';
 
 export class Note extends Component {
 
@@ -9,10 +9,6 @@ export class Note extends Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            width: 0,
-            height: 0,
-        };
     }
 
     componentDidMount = () => {
@@ -21,8 +17,8 @@ export class Note extends Component {
 
     render() {
         return (
-            <View style={styles.rootContainer}>
-                <View onLayout={(event) => { this.onLayout(event) }} style={styles.container}>
+            <View style={[styles.rootContainer, this.getUpdatedLayout()]}>
+                <View  style={styles.container}>
                     <Text style={styles.text}>{this.props.children}</Text>
                     <TouchableOpacity style={styles.btContainer}>
                         <Text style={styles.textAlarm}>10:50</Text>
@@ -31,22 +27,25 @@ export class Note extends Component {
 
                 </View>
             </View>
-
-
         )
     }
 
-    onLayout(event) {
-        let width = event.nativeEvent.layout.width;
-        let height = event.nativeEvent.layout.height;
 
-        this.props.onMount(
-            {
-                id: this.props.id,
-                width: width,
-                height: height 
-            });
+    getUpdatedLayout = () =>
+    {
+        let width = Dimensions.get('window').width - metrics.padding * 2;
+        nota = this.props.children;
+
+        width = nota.length > 50 ? width : width / 2;
+
+        let style = {
+            width: width
+        }
+
+        return style;
     }
+
+   
 }
 
 export default Note;

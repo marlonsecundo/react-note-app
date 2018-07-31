@@ -1,13 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import { colors, fonts, general, metrics } from '../../styles';
 const styles = StyleSheet.create({
-
-    rootContainer:
-    {
-        flex: 1,
-        minWidth: Dimensions.get('window').width - metrics.padding * 2,
-        alignItems: 'flex-start',
-    },
     container:
     {
         ...general.container,
@@ -15,8 +8,9 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         paddingBottom: 10,
         backgroundColor: colors.primary,
-        elevation: 1,
+        elevation: 0.3,
         flex: 0,
+        margin: 5,
     },
     text:
     {
@@ -45,4 +39,4 @@ const styles = StyleSheet.create({
 });
 
 export default styles;
-export { colors, fonts };
+export { colors, fonts, metrics };
