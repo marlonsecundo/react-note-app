@@ -8,8 +8,8 @@ const styles = StyleSheet.create({
         opacity: 1,
         elevation: 7,
         backgroundColor: colors.primary,
-        borderTopLeftRadius: 10,
-        borderTopRightRadius: 10,
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
     },
     container:
     {
