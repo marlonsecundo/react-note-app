@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { Menu, ListNote, Footer } from '../../components';
+import { Menu, NoteList, Footer } from '../../components';
 import styles from './styles';
 
 export default class Home extends Component {
@@ -25,7 +25,7 @@ export default class Home extends Component {
         return (
             <View style={[styles.rootContainer, this.state.style]} onLayout={(event) => { this.onLayout() }}>
                 <Menu onLayout={(event) => { this.menuOnLayout(event) }}></Menu>
-                <ListNote heightSpace={this.state.heightSpace}></ListNote>
+                <NoteList heightSpace={this.state.heightSpace}></NoteList>
                 <Footer onLayout={(event) => { this.footerOnLayout(event) }}></Footer>
             </View>
         );

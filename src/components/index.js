@@ -1,6 +1,6 @@
 import Menu from './Menu';
-import ListNote from './ListNote';
+import NoteList from './NoteList';
 import Note from './Note';
 import Footer from './Footer';
 
-export { Menu, ListNote, Note, Footer };
+export { Menu, NoteList, Note, Footer };

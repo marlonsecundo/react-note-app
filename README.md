@@ -1,7 +1,7 @@
 ## React Note App
 Notes app using react with redux
 
-## References
+# References
 
 ## React Concepts
 
@@ -18,6 +18,7 @@ Notes app using react with redux
 
 * [`Intro React and Redux`] (https://blog.isquaredsoftware.com/presentations/2018-03-redux-fundamentals/)
 * [`React Native Redux Tutorial`] (https://medium.com/@mosesesan/tutorial-react-native-redux-boilerplate-4899f5c4f431)
+* [`Rocketseat Redux Tutorial`](https://github.com/Rocketseat/youtube-codequinta-redux)
 
 ## Others Links
 * [`React Spruce`](https://github.com/prscX/react-native-spruce)

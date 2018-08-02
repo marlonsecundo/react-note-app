@@ -4,7 +4,7 @@ import { Note } from '../../components';
 import styles, { metrics } from './styles';
 
 
-export class ListNote extends Component {
+export class NoteList extends Component {
 
     constructor(props) {
         super(props);
@@ -80,4 +80,4 @@ export class ListNote extends Component {
 
 }
 
-export default ListNote;
+export default NoteList;
