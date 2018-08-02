@@ -1,8 +1,9 @@
 import { StyleSheet, Dimensions } from 'react-native';
 import { colors, metrics, fonts, general } from '../../styles';
 
-const screenWidth = Dimensions.get("window").width;
-const height =  screenWidth - (screenWidth / 1.5);
+export const screenWidth = Dimensions.get("window").width;
+export const height =  screenWidth - (screenWidth / 1.5) + 2;
+export const radius = screenWidth / 2;
 
 const styles = StyleSheet.create({
 
@@ -12,7 +13,6 @@ const styles = StyleSheet.create({
         padding: 0,
         zIndex: 1,
         position: 'absolute',
-        width: screenWidth,
         opacity: 1,
         paddingBottom: 3,
     },
@@ -25,13 +25,13 @@ const styles = StyleSheet.create({
         minHeight: screenWidth,
         width: screenWidth,
         transform: [{ scaleX: 1.5 }, { translateY: - screenWidth / 1.5 }],
-        borderRadius: screenWidth / 2,
+        borderRadius: radius,
     },
     menuContainer:
     {
+        flex: 1,
         elevation: 3,
         minHeight: 65,
-        height: height,
         padding: metrics.padding,
         paddingBottom: 0,
         flexDirection: 'row',

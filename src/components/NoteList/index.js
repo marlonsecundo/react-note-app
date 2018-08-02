@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Text, View, ScrollView, Dimensions } from 'react-native';
 import { Note } from '../../components';
 import styles, { metrics } from './styles';
+import { connect } from 'react-redux';
 
 
 export class NoteList extends Component {
@@ -59,25 +60,23 @@ export class NoteList extends Component {
         let screenWidth = Dimensions.get("window").width - metrics.padding * 2;
         return {
             width: screenWidth,
-            height: this.props.heightSpace.header,
+            height: this.props.headerHeight,
         }
     }
 
     bottomContainerSpace = () => {
         let screenWidth = Dimensions.get("window").width - metrics.padding * 2;
 
-        console.log("Agora: " + this.props.heightSpace.footer);
-
         return {
             width: screenWidth,
-            height: this.props.heightSpace.footer,
+            height: this.props.headerHeight,
         }
 
     }
-
-
-
-
 }
 
-export default NoteList;
+const mapStateToProps = (state) => ({
+    headerHeight: state.animation.headerLayout.height,
+});
+
+export default connect(mapStateToProps)(NoteList);

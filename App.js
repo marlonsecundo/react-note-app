@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
 import { Home, Settings } from './src/screens';
+
+import { createStackNavigator } from 'react-navigation';
+
+import { Provider } from 'react-redux';
+import store from './src/redux/store';
 
 const RootStack = createStackNavigator(
   {
@@ -19,8 +23,10 @@ type Props = {};
 export default class App extends Component<Props> {
 
   render() {
-    return <RootStack />;
-
+    return (
+      <Provider store={store}>
+        <RootStack></RootStack>
+      </Provider>);
   }
 
 }

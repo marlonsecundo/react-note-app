@@ -39,7 +39,7 @@ export class Footer extends Component {
       }
     });
 
-    this.props.onLayout({ height: height, width: width, x: 0, y: y });
+    //this.props.onLayout({ height: height, width: width, x: 0, y: y });
   }
 }
 
