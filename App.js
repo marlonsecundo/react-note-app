@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
 import { Home, Settings } from './src/screens';
 
 import { createStackNavigator } from 'react-navigation';
@@ -21,6 +20,11 @@ const RootStack = createStackNavigator(
 
 type Props = {};
 export default class App extends Component<Props> {
+
+  constructor(props) {
+    super(props);
+
+  }
 
   render() {
     return (

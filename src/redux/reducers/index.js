@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import animation from './animation';
+import layout from './layout';
 
 export default combineReducers({
-    animation,
+    layout,
 })

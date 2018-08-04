@@ -1,7 +1,7 @@
-import React, { PureComponent } from 'react';
-import { View, Text, Animated, Easing, TouchableWithoutFeedback, Platform } from 'react-native';
+import React from 'react';
+import { View, Animated, Easing, TouchableWithoutFeedback, Platform } from 'react-native';
 import PropTypes from 'prop-types';
-class RippleView extends React.PureComponent {
+class RippleView extends React.Component {
 
     initialOpacity = 0.12;
     initialScale = 0.01;
@@ -12,11 +12,22 @@ class RippleView extends React.PureComponent {
         this.state = {
             scale: new Animated.Value(this.initialScale),
             opacity: new Animated.Value(this.initialOpacity),
-            size : 0,
+            size: 0,
         };
+    }
 
+    componentDidUpdate(prevProps) {
+
+        if (this.props.isPressIn) {
+            this.onPressedIn();
+        }
+
+        if (this.props.isPressOut) {
+            this.onPressedOut();
+        }
 
     }
+
     onPressedIn() {
         Animated.timing(this.state.scale, {
             toValue: 1.1,
@@ -35,26 +46,27 @@ class RippleView extends React.PureComponent {
         });
     }
 
+
     render() {
 
         return (
-            <TouchableWithoutFeedback style={{flexGrow: 0, justifyContent: 'center', alignItems: 'center'}} onLayout={(event) => { this.onLayout(event) }} onPressIn={() => { this.onPressedIn() }} onPressOut={() => { this.onPressedOut() }}>
-                <View
-                    style={{ padding: 10, flexGrow: 0, justifyContent: 'center', alignItems: 'center' }}>
-                    <Animated.View
-                        style={{
-                            position: 'absolute',
-                            height: this.state.size * .9,
-                            width: this.state.size * .9,
-                            transform: [{ scale: this.state.scale }],
-                            opacity: this.state.opacity,
-                            borderRadius: this.state.size / 2,
-                            backgroundColor: this.props.color || 'black',
-                        }}
-                    />
-                    {this.props.children}
+                <View onLayout={(event) => { this.onLayout(event) }}>
+                    <View style={{ padding: 10, flexGrow: 0, justifyContent: 'center', alignItems: 'center' }}>
+                        <Animated.View
+                            style={{
+                                position: 'absolute',
+                                height: this.state.size * .9,
+                                width: this.state.size * .9,
+                                transform: [{ scale: this.state.scale }],
+                                opacity: this.state.opacity,
+                                borderRadius: this.state.size / 2,
+                                backgroundColor: this.props.color || 'black',
+                            }}
+                        />
+                        {this.props.children}
+                    </View>
                 </View>
-            </TouchableWithoutFeedback>
+
         );
     }
 

@@ -69,14 +69,15 @@ export class NoteList extends Component {
 
         return {
             width: screenWidth,
-            height: this.props.headerHeight,
+            height: this.props.footerHeight,
         }
 
     }
 }
 
 const mapStateToProps = (state) => ({
-    headerHeight: state.animation.headerLayout.height,
+    headerHeight: state.layout.headerHeight,
+    footerHeight: state.layout.footerHeight,
 });
 
 export default connect(mapStateToProps)(NoteList);

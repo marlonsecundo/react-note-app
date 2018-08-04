@@ -1,48 +1,58 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Button, Animated } from 'react-native';
 import { ButtonIcon } from '../Generic';
-import styles, { colors, screenWidth, height, radius } from './styles';
-
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from '../../redux/actions/animation';
+
+import styles, { colors, maxHeight, minHeight, radius } from './styles';
+import * as actions from '../../redux/actions/layout';
+import { ExpandedView } from '../Generic/Animation';
 
 export class Menu extends Component {
 
     constructor(props) {
         super(props);
 
-        this.state = {};
+        this.props.setHeaderHeight(maxHeight);
 
-        this.props.updateHeaderLayout({ left: 0, top: 0, width: screenWidth, height: height });
+        this.state = {
+            radius: new Animated.Value(radius),
+        }
     }
 
-
     render() {
+
         return (
-            <View style={[styles.rootContainer, this.getLayout()]}>
-                <View style={styles.circleContainer} />
+            <ExpandedView maxHeight={maxHeight} minHeight={minHeight} isExpanded={this.props.isExpanded} duration={1000} style={[styles.rootContainer]}>
+
+                <Animated.View style={[styles.circleContainer, this.getRadiusStyle()]} />
+
                 <View style={styles.menuContainer}>
-                    <ButtonIcon icon="more-horizontal" color={colors.secondary}></ButtonIcon>
-                    <View style={styles.plusContainer}>
-                        <ButtonIcon icon="plus" color={colors.secondary}></ButtonIcon>
-                    </View> 
-                    <ButtonIcon icon="trash-2" color={colors.secondary}></ButtonIcon>
+                    <ButtonIcon onPress={() => { }} icon="more-horizontal" color={colors.secondary}></ButtonIcon>
+                    <View style={[styles.plusContainer]}>
+                        <ButtonIcon onPress={() => { }} icon="plus" color={colors.secondary}></ButtonIcon>
+                    </View>
+                    <ButtonIcon onPress={() => { }} icon="trash-2" color={colors.secondary}></ButtonIcon>
                 </View>
-            </View>
+
+            </ExpandedView>
         )
     }
 
-    getLayout() {
-        return this.props.headerLayout;
+    startShrinkMode = () => {
+
     }
+
+    startExpandedMode = () => {
+
+    }
+
+    getRadiusStyle = () => ({
+        borderRadius: this.state.radius,
+    });
+
 }
-
-
-const mapStateToProps = (state) => ({
-    headerLayout: state.animation.headerLayout,
-});
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Menu);
+export default connect(null, mapDispatchToProps)(Menu);

@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import { Text, View, Dimensions, Platform } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+import * as actions from '../../redux/actions/layout';
 import styles from './styles';
+import { metrics } from '../../styles';
+
 export class Footer extends Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
-      style: {}
+      style: {
+      }
     }
+
   }
-
-
 
   render() {
     return (
@@ -29,18 +36,12 @@ export class Footer extends Component {
 
     y = Platform.OS === 'android' ? y - 24 : y;
 
-    this.setState({
-      style: {
-        height: height,
-        width: width,
-        left: 0,
-        top: y,
-        opacity: 1,
-      }
-    });
-
-    //this.props.onLayout({ height: height, width: width, x: 0, y: y });
+    this.setState({ style: { height: height, width: width,  top: y } });
+    this.props.setFooterHeight(height);
   }
+
 }
 
-export default Footer;
+const mapDistacthToProps = (dispatch) => bindActionCreators(actions, dispatch);
+
+export default connect(null, mapDistacthToProps)(Footer);
