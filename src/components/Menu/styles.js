@@ -2,7 +2,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 import { colors, metrics, fonts, general } from '../../styles';
 
 export const screenWidth = Dimensions.get("window").width;
-export const maxHeight =  screenWidth - (screenWidth / 1.5) + 2;
+export const maxHeight = screenWidth - (screenWidth / 1.5) + 2;
 export const minHeight = 70;
 export const radius = screenWidth / 2;
 
@@ -18,6 +18,13 @@ const styles = StyleSheet.create({
         width: screenWidth,
         height: maxHeight,
         marginBottom: 3,
+    },
+    container: 
+    {
+        position: 'absolute',
+        minHeight: screenWidth,
+        width: screenWidth,
+        alignItems: 'center',
     },
     circleContainer:
     {
@@ -41,10 +48,12 @@ const styles = StyleSheet.create({
     },
     title:
     {
+        padding: metrics.padding,
         color: colors.secondary,
         fontFamily: fonts.family,
         fontSize: fonts.title,
         fontStyle: 'italic',
+        elevation: 4,
     },
     plusContainer:
     {

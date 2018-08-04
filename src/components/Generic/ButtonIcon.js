@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/Feather';
-import { StyleSheet, View, TouchableWithoutFeedback, TouchableNativeFeedback, TouchableOpacity } from 'react-native';
+import { View, TouchableWithoutFeedback } from 'react-native';
 import { RippleView } from './Animation';
 import { colors, fonts } from '../../styles';
 
@@ -37,9 +37,6 @@ class ButtonIcon extends React.PureComponent {
     }
 }
 
-const styles = StyleSheet.create({
-
-});
 
 ButtonIcon.propTypes = {
     icon: PropTypes.string.isRequired,

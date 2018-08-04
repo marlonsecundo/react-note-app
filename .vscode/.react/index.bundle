@@ -61626,9 +61626,25 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
             var _this = _possibleConstructorReturn(this, (Menu.__proto__ || Object.getPrototypeOf(Menu)).call(this, props));
 
-            _this.startShrinkMode = function () {};
+            _this.startShrinkMode = function () {
+                _reactNative.Animated.parallel([_reactNative.Animated.timing(_this.state.radius, {
+                    toValue: 0,
+                    duration: _this.state.duration / 2.0
+                }), _reactNative.Animated.timing(_this.state.titleOpacity, {
+                    toValue: 0,
+                    duration: _this.state.duration
+                })]).start();
+            };
 
-            _this.startExpandedMode = function () {};
+            _this.startExpandedMode = function () {
+                _reactNative.Animated.parallel([_reactNative.Animated.timing(_this.state.radius, {
+                    toValue: _styles.radius,
+                    duration: _this.state.duration * 1.1
+                }), _reactNative.Animated.timing(_this.state.titleOpacity, {
+                    toValue: 1,
+                    duration: _this.state.duration
+                })]).start();
+            };
 
             _this.getRadiusStyle = function () {
                 return {
@@ -61636,15 +61652,36 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 };
             };
 
+            _this.getOpacityStyle = function () {
+                return {
+                    opacity: _this.state.titleOpacity
+                };
+            };
+
             _this.props.setHeaderHeight(_styles.maxHeight);
 
+            _this.props.setIsExpanded(true);
+
             _this.state = {
-                radius: new _reactNative.Animated.Value(_styles.radius)
+                radius: new _reactNative.Animated.Value(_styles.radius),
+                isExpanded: _this.props.isExpanded,
+                duration: 500,
+                titleOpacity: new _reactNative.Animated.Value(1)
             };
             return _this;
         }
 
         _createClass(Menu, [{
+            key: "componentDidUpdate",
+            value: function componentDidUpdate(prevProps) {
+                if (this.state.isExpanded !== this.props.isExpanded) {
+                    this.setState({
+                        isExpanded: this.props.isExpanded
+                    });
+                    this.props.isExpanded ? this.startExpandedMode() : this.startShrinkMode();
+                }
+            }
+        }, {
             key: "render",
             value: function render() {
                 return _react3.default.createElement(
@@ -61652,28 +61689,49 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                     {
                         maxHeight: _styles.maxHeight,
                         minHeight: _styles.minHeight,
-                        isExpanded: this.props.isExpanded,
-                        duration: 1000,
+                        isExpanded: this.state.isExpanded,
+                        duration: this.state.duration,
                         style: [_styles2.default.rootContainer],
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 26
+                            lineNumber: 38
                         }
                     },
-                    _react3.default.createElement(_reactNative.Animated.View, {
-                        style: [_styles2.default.circleContainer, this.getRadiusStyle()],
-                        __source: {
-                            fileName: _jsxFileName,
-                            lineNumber: 28
-                        }
-                    }),
+                    _react3.default.createElement(
+                        _reactNative.View,
+                        {
+                            style: _styles2.default.container,
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 40
+                            }
+                        },
+                        _react3.default.createElement(
+                            _reactNative.Animated.Text,
+                            {
+                                style: [_styles2.default.title, this.getOpacityStyle()],
+                                __source: {
+                                    fileName: _jsxFileName,
+                                    lineNumber: 41
+                                }
+                            },
+                            "ATTACH NOTES"
+                        ),
+                        _react3.default.createElement(_reactNative.Animated.View, {
+                            style: [_styles2.default.circleContainer, this.getRadiusStyle()],
+                            __source: {
+                                fileName: _jsxFileName,
+                                lineNumber: 42
+                            }
+                        })
+                    ),
                     _react3.default.createElement(
                         _reactNative.View,
                         {
                             style: _styles2.default.menuContainer,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 30
+                                lineNumber: 46
                             }
                         },
                         _react3.default.createElement(_Generic.ButtonIcon, {
@@ -61682,7 +61740,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             color: _styles.colors.secondary,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 31
+                                lineNumber: 47
                             }
                         }),
                         _react3.default.createElement(
@@ -61691,7 +61749,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                 style: [_styles2.default.plusContainer],
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 32
+                                    lineNumber: 48
                                 }
                             },
                             _react3.default.createElement(_Generic.ButtonIcon, {
@@ -61700,7 +61758,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                 color: _styles.colors.secondary,
                                 __source: {
                                     fileName: _jsxFileName,
-                                    lineNumber: 33
+                                    lineNumber: 49
                                 }
                             })
                         ),
@@ -61710,7 +61768,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             color: _styles.colors.secondary,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 35
+                                lineNumber: 51
                             }
                         })
                     )
@@ -61721,11 +61779,17 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         return Menu;
     }(_react2.Component));
 
+    var mapStateToProps = function mapStateToProps(state) {
+        return {
+            isExpanded: state.layout.isExpanded
+        };
+    };
+
     var mapDispatchToProps = function mapDispatchToProps(dispatch) {
         return (0, _redux.bindActionCreators)(actions, dispatch);
     };
 
-    exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(Menu);
+    exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Menu);
 },495,[118,179,12,496,555,558,575,576,547],"src\\components\\Menu\\index.js");
 __d(function (global, _require, module, exports, _dependencyMap) {
   Object.defineProperty(exports, "__esModule", {
@@ -61883,8 +61947,6 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
         return ButtonIcon;
     }(_react3.default.PureComponent));
-
-    var styles = _reactNative.StyleSheet.create({});
 
     ButtonIcon.propTypes = {
         icon: _propTypes2.default.string.isRequired,
@@ -65872,6 +65934,12 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             height: maxHeight,
             marginBottom: 3
         }),
+        container: {
+            position: 'absolute',
+            minHeight: screenWidth,
+            width: screenWidth,
+            alignItems: 'center'
+        },
         circleContainer: {
             position: 'absolute',
             flex: 1,
@@ -65895,10 +65963,12 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             opacity: 1
         },
         title: {
+            padding: _styles.metrics.padding,
             color: _styles.colors.secondary,
             fontFamily: _styles.fonts.family,
             fontSize: _styles.fonts.title,
-            fontStyle: 'italic'
+            fontStyle: 'italic',
+            elevation: 4
         },
         plusContainer: {
             alignSelf: 'flex-end'
@@ -65915,9 +65985,11 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     });
     exports.setHeaderHeight = setHeaderHeight;
     exports.setFooterHeight = setFooterHeight;
+    exports.setIsExpanded = setIsExpanded;
     var types = exports.types = {
         setHeaderHeight: 'SET_HEADER_HEIGHT',
-        setFooterHeight: 'SET_FOOTER_HEIGHT'
+        setFooterHeight: 'SET_FOOTER_HEIGHT',
+        setIsExpanded: 'SET_EXPANDED'
     };
 
     function setHeaderHeight(headerHeight) {
@@ -65931,6 +66003,13 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         return {
             type: types.setFooterHeight,
             footerHeight: footerHeight
+        };
+    }
+
+    function setIsExpanded(isExpanded) {
+        return {
+            type: types.setIsExpanded,
+            isExpanded: isExpanded
         };
     }
 },576,[],"src\\redux\\actions\\layout.js");
@@ -65961,6 +66040,14 @@ __d(function (global, _require, module, exports, _dependencyMap) {
     var _styles2 = _interopRequireDefault(_styles);
 
     var _reactRedux = _require(_dependencyMap[5], "react-redux");
+
+    var _redux = _require(_dependencyMap[6], "redux");
+
+    var _layout = _require(_dependencyMap[7], "../../redux/actions/layout");
+
+    var actions = _interopRequireWildcard(_layout);
+
+    function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
     function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -65996,6 +66083,14 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             _classCallCheck(this, NoteList);
 
             var _this = _possibleConstructorReturn(this, (NoteList.__proto__ || Object.getPrototypeOf(NoteList)).call(this, props));
+
+            _this.onStartScroll = function () {
+                _this.props.setIsExpanded(false);
+            };
+
+            _this.onEndScroll = function () {
+                _this.props.setIsExpanded(true);
+            };
 
             _this.topContainerSpace = function () {
                 var screenWidth = _reactNative.Dimensions.get("window").width - _styles.metrics.padding * 2;
@@ -66038,30 +66133,38 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         _createClass(NoteList, [{
             key: "render",
             value: function render() {
+                var _this2 = this;
+
                 return _react3.default.createElement(
                     _reactNative.View,
                     {
                         style: _styles2.default.rootContainer,
                         __source: {
                             fileName: _jsxFileName,
-                            lineNumber: 43
+                            lineNumber: 47
                         }
                     },
                     _react3.default.createElement(
                         _reactNative.ScrollView,
                         {
+                            onScrollBeginDrag: function onScrollBeginDrag() {
+                                _this2.onStartScroll();
+                            },
+                            onScrollEndDrag: function onScrollEndDrag() {
+                                _this2.onEndScroll();
+                            },
                             showsVerticalScrollIndicator: false,
                             contentContainerStyle: _styles2.default.noteContainer,
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 44
+                                lineNumber: 48
                             }
                         },
                         _react3.default.createElement(_reactNative.View, {
                             style: this.topContainerSpace(),
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 45
+                                lineNumber: 54
                             }
                         }),
                         this.state.notes.map(function (value, key) {
@@ -66071,7 +66174,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                                     key: key,
                                     __source: {
                                         fileName: _jsxFileName,
-                                        lineNumber: 48
+                                        lineNumber: 58
                                     }
                                 },
                                 value.nota
@@ -66081,7 +66184,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                             style: this.bottomContainerSpace(),
                             __source: {
                                 fileName: _jsxFileName,
-                                lineNumber: 52
+                                lineNumber: 63
                             }
                         })
                     )
@@ -66099,8 +66202,12 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         };
     };
 
-    exports.default = (0, _reactRedux.connect)(mapStateToProps)(NoteList);
-},577,[118,179,12,494,578,558],"src\\components\\NoteList\\index.js");
+    var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+        return (0, _redux.bindActionCreators)(actions, dispatch);
+    };
+
+    exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(NoteList);
+},577,[118,179,12,494,578,558,555,576],"src\\components\\NoteList\\index.js");
 __d(function (global, _require, module, exports, _dependencyMap) {
     Object.defineProperty(exports, "__esModule", {
         value: true
@@ -84799,6 +84906,11 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             case _layout.types.setFooterHeight:
                 return _extends({}, state, {
                     footerHeight: action.footerHeight
+                });
+
+            case _layout.types.setIsExpanded:
+                return _extends({}, state, {
+                    isExpanded: action.isExpanded
                 });
 
             default:

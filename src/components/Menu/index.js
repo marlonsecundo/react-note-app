@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Button, Animated } from 'react-native';
+import { View, Text, Button, Animated } from 'react-native';
 import { ButtonIcon } from '../Generic';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -14,18 +14,34 @@ export class Menu extends Component {
         super(props);
 
         this.props.setHeaderHeight(maxHeight);
+        this.props.setIsExpanded(true);
 
         this.state = {
             radius: new Animated.Value(radius),
+            isExpanded: this.props.isExpanded,
+            duration: 500,
+            titleOpacity: new Animated.Value(1),
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.state.isExpanded !== this.props.isExpanded) {
+
+            this.setState({ isExpanded: this.props.isExpanded });
+            this.props.isExpanded ? this.startExpandedMode() : this.startShrinkMode();
         }
     }
 
     render() {
 
         return (
-            <ExpandedView maxHeight={maxHeight} minHeight={minHeight} isExpanded={this.props.isExpanded} duration={1000} style={[styles.rootContainer]}>
+            <ExpandedView maxHeight={maxHeight} minHeight={minHeight} isExpanded={this.state.isExpanded} duration={this.state.duration} style={[styles.rootContainer]}>
 
-                <Animated.View style={[styles.circleContainer, this.getRadiusStyle()]} />
+                <View style={styles.container}>
+                    <Animated.Text style={[styles.title, this.getOpacityStyle()]}>ATTACH NOTES</Animated.Text>
+                    <Animated.View style={[styles.circleContainer, this.getRadiusStyle()]} />
+
+                </View>
 
                 <View style={styles.menuContainer}>
                     <ButtonIcon onPress={() => { }} icon="more-horizontal" color={colors.secondary}></ButtonIcon>
@@ -40,10 +56,30 @@ export class Menu extends Component {
     }
 
     startShrinkMode = () => {
-
+        Animated.parallel([
+            Animated.timing(this.state.radius, {
+                toValue: 0,
+                duration: this.state.duration / 2.0,
+            }),
+            Animated.timing(this.state.titleOpacity, {
+                toValue: 0,
+                duration: this.state.duration,
+            })
+        ]).start();
     }
 
     startExpandedMode = () => {
+
+        Animated.parallel([
+            Animated.timing(this.state.radius, {
+                toValue: radius,
+                duration: this.state.duration * 1.1,
+            }),
+            Animated.timing(this.state.titleOpacity,{
+                toValue: 1,
+                duration: this.state.duration
+            })
+        ]).start();
 
     }
 
@@ -51,8 +87,16 @@ export class Menu extends Component {
         borderRadius: this.state.radius,
     });
 
+    getOpacityStyle = () => ({
+        opacity: this.state.titleOpacity,
+    });
+
 }
+
+const mapStateToProps = (state) => ({
+    isExpanded: state.layout.isExpanded,
+});
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch);
 
-export default connect(null, mapDispatchToProps)(Menu);
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);
