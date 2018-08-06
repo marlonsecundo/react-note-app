@@ -5,6 +5,7 @@ export const screenWidth = Dimensions.get("window").width;
 export const maxHeight = screenWidth - (screenWidth / 1.5) + 2;
 export const minHeight = 70;
 export const radius = screenWidth / 2;
+export const newNoteHeight = general.newNoteHeight;
 
 const styles = StyleSheet.create({
 
@@ -16,15 +17,14 @@ const styles = StyleSheet.create({
         position: 'absolute',
         opacity: 1,
         width: screenWidth,
-        height: maxHeight,
         marginBottom: 3,
     },
-    container: 
+    container:
     {
         position: 'absolute',
-        minHeight: screenWidth,
         width: screenWidth,
         alignItems: 'center',
+        flexDirection: 'column',
     },
     circleContainer:
     {
@@ -39,12 +39,17 @@ const styles = StyleSheet.create({
     menuContainer:
     {
         flex: 1,
-        elevation: 3,
+    },
+    buttonsContainer:
+    {
         padding: 10,
+        elevation: 10,
+        flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
-        opacity: 1,
+        maxHeight: maxHeight,
+        minHeight: minHeight,
     },
     title:
     {

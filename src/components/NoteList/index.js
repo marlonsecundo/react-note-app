@@ -11,6 +11,8 @@ import * as actions from '../../redux/actions/layout';
 
 export class NoteList extends Component {
 
+    timerId = 0;
+
     constructor(props) {
         super(props);
         this.state = {
@@ -47,7 +49,6 @@ export class NoteList extends Component {
             <View style={styles.rootContainer}>
                 <ScrollView
                     onScrollBeginDrag={() => { this.onStartScroll() }}
-                    onScrollEndDrag={() => { this.onEndScroll() }}
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={styles.noteContainer}>
 
@@ -59,7 +60,7 @@ export class NoteList extends Component {
                                 {value.nota}
                             </Note>)
                     })}
-                    
+
                     <View style={this.bottomContainerSpace()}></View>
 
                 </ScrollView>
@@ -68,11 +69,17 @@ export class NoteList extends Component {
     }
 
     onStartScroll = () => {
-        this.props.setIsExpanded(false);
-    }
+        if (this.props.isExpanded === true) {
+            this.props.setIsExpanded(false);
+        }
 
-    onEndScroll = () => {
-        this.props.setIsExpanded(true);
+        clearTimeout(this.timerId);
+
+        let id = setTimeout(() => {
+            this.props.setIsExpanded(true)
+        }, 10000);
+
+        this.timerId = id;
     }
 
     topContainerSpace = () => {
@@ -97,6 +104,7 @@ export class NoteList extends Component {
 const mapStateToProps = (state) => ({
     headerHeight: state.layout.headerHeight,
     footerHeight: state.layout.footerHeight,
+    isExpanded: state.layout.isExpanded,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch);

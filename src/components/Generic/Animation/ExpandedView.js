@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { View, Animated, Easing } from 'react-native';
 
+import PropTypes from 'prop-types'; 
+
 class ExpandedView extends Component {
     constructor(props) {
         super(props);
@@ -16,6 +18,9 @@ class ExpandedView extends Component {
     }
 
     componentDidUpdate(prevProps) {
+
+        
+
         if (this.props.isExpanded !== prevProps.isExpanded) {
             this.props.isExpanded ?  this.startExpansion() : this.startShrinkage();
         }
@@ -39,13 +44,21 @@ class ExpandedView extends Component {
 
     render() {
         return (
-            <Animated.View style={[this.props.style, {
+            <Animated.View  style={[this.props.style, {
                 height: this.state.height,
+                
             }]}>
                 {this.props.children}
             </Animated.View>
         );
     }
+}
+
+ExpandedView.propTypes = {
+    isExpanded : PropTypes.bool.isRequired,
+    maxHeight : PropTypes.number.isRequired,
+    minHeight: PropTypes.number.isRequired,
+    duration: PropTypes.number.isRequired,
 }
 
 export default ExpandedView;

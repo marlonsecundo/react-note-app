@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text, Button, Animated } from 'react-native';
+import { View, Animated } from 'react-native';
 import { ButtonIcon } from '../Generic';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import styles, { colors, maxHeight, minHeight, radius } from './styles';
+import styles, { colors, maxHeight, minHeight, radius, newNoteHeight } from './styles';
 import * as actions from '../../redux/actions/layout';
-import { ExpandedView } from '../Generic/Animation';
+import { ExpandedView, RippleView } from '../Generic/Animation';
+import { NewNoteView } from "../index";
+
+import { direction } from '../Generic/Animation/TransitionView';
+
 
 export class Menu extends Component {
 
@@ -18,9 +22,11 @@ export class Menu extends Component {
 
         this.state = {
             radius: new Animated.Value(radius),
-            isExpanded: this.props.isExpanded,
+            isExpanded: true,
             duration: 500,
             titleOpacity: new Animated.Value(1),
+            start: 'none'
+
         }
     }
 
@@ -35,20 +41,21 @@ export class Menu extends Component {
     render() {
 
         return (
-            <ExpandedView maxHeight={maxHeight} minHeight={minHeight} isExpanded={this.state.isExpanded} duration={this.state.duration} style={[styles.rootContainer]}>
-
+            <ExpandedView removeClippedSubviews={true} maxHeight={maxHeight + newNoteHeight} minHeight={minHeight} isExpanded={this.state.isExpanded} duration={this.state.duration} style={[styles.rootContainer]}>
                 <View style={styles.container}>
                     <Animated.Text style={[styles.title, this.getOpacityStyle()]}>ATTACH NOTES</Animated.Text>
                     <Animated.View style={[styles.circleContainer, this.getRadiusStyle()]} />
-
                 </View>
 
-                <View style={styles.menuContainer}>
-                    <ButtonIcon onPress={() => { }} icon="more-horizontal" color={colors.secondary}></ButtonIcon>
-                    <View style={[styles.plusContainer]}>
-                        <ButtonIcon onPress={() => { }} icon="plus" color={colors.secondary}></ButtonIcon>
+                <View  style={styles.menuContainer}>
+                    <View style={styles.buttonsContainer}>
+                        <ButtonIcon onPress={() => { this.setState({ start: direction.reverse })}} icon="more-horizontal" color={colors.secondary}></ButtonIcon>
+                        <View style={[styles.plusContainer]}>
+                            <ButtonIcon onPress={() => { this.setState({ start: direction.normal }) }} icon="plus" color={colors.secondary}></ButtonIcon>
+                        </View>
+                        <ButtonIcon onPress={() => { }} icon="trash-2" color={colors.secondary}></ButtonIcon>
                     </View>
-                    <ButtonIcon onPress={() => { }} icon="trash-2" color={colors.secondary}></ButtonIcon>
+                    <NewNoteView start={this.state.start}></NewNoteView>
                 </View>
 
             </ExpandedView>
@@ -75,7 +82,7 @@ export class Menu extends Component {
                 toValue: radius,
                 duration: this.state.duration * 1.1,
             }),
-            Animated.timing(this.state.titleOpacity,{
+            Animated.timing(this.state.titleOpacity, {
                 toValue: 1,
                 duration: this.state.duration
             })

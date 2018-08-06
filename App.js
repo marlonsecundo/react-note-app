@@ -5,6 +5,7 @@ import { createStackNavigator } from 'react-navigation';
 
 import { Provider } from 'react-redux';
 import store from './src/redux/store';
+import { NewNoteView } from './src/components';
 
 const RootStack = createStackNavigator(
   {
@@ -30,7 +31,7 @@ export default class App extends Component<Props> {
     return (
       <Provider store={store}>
         <RootStack></RootStack>
-      </Provider>);
+    </Provider>);
   }
 
 }

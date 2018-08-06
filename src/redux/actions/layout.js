@@ -2,7 +2,6 @@ export const types = {
     setHeaderHeight: 'SET_HEADER_HEIGHT',
     setFooterHeight: 'SET_FOOTER_HEIGHT',
     setIsExpanded: 'SET_EXPANDED',
-
 }
 
 export function setHeaderHeight(headerHeight) {
