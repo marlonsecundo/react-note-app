@@ -10,6 +10,9 @@ const styles = StyleSheet.create({
         backgroundColor: colors.primary,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
+        height: metrics.footerHeight,
+        width: metrics.screen.width,
+        top: metrics.screen.height - metrics.footerHeight,
     },
     container:
     {

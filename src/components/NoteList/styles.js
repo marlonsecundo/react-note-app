@@ -16,6 +16,16 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         padding: metrics.padding,
         paddingVertical: 0,
+    },
+    topContainer:
+    {
+        height: metrics.roundHeight,
+        width: metrics.screen.width,
+    },
+    bottomContainer: 
+    {
+        height: metrics.footerHeight,
+        width: metrics.screen.width,
     }
 
 });

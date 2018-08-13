@@ -1,3 +1,3 @@
 import ButtonIcon from './ButtonIcon';
-
-export { ButtonIcon };
+import ButtonIconColor from './ButtonIconColor';
+export { ButtonIcon, ButtonIconColor };

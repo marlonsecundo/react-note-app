@@ -22,7 +22,7 @@ export class Note extends Component {
                     <Text style={styles.text}>{this.props.children}</Text>
                     <TouchableOpacity style={styles.btContainer}>
                         <Text style={styles.textAlarm}>10:50</Text>
-                        <Icon name="bell" color={colors.secondary} size={fonts.bell}></Icon>
+                        <Icon name="bell" color={colors.secondary} size={metrics.iconSmall}></Icon>
                     </TouchableOpacity>
 
                 </View>

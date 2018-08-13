@@ -1,64 +1,65 @@
 import React, { Component } from 'react';
 import { View, Animated } from 'react-native';
 import { ButtonIcon } from '../Generic';
-import { bindActionCreators } from 'redux';
+import { NewNoteView } from "../index";
+import { ExpandedView } from '../Generic/Animation';
+
 import { connect } from 'react-redux';
 
-import styles, { colors, maxHeight, minHeight, radius, newNoteHeight } from './styles';
-import * as actions from '../../redux/actions/layout';
-import { ExpandedView, RippleView } from '../Generic/Animation';
-import { NewNoteView } from "../index";
-
 import { direction } from '../Generic/Animation/TransitionView';
-
+import styles, { colors, radius, metrics } from './styles';
 
 export class Menu extends Component {
 
     constructor(props) {
         super(props);
 
-        this.props.setHeaderHeight(maxHeight);
-        this.props.setIsExpanded(true);
-
         this.state = {
             radius: new Animated.Value(radius),
-            isExpanded: true,
             duration: 500,
             titleOpacity: new Animated.Value(1),
-            start: 'none'
+            start: direction.none,
 
         }
     }
 
-    componentDidUpdate(prevProps) {
-        if (this.state.isExpanded !== this.props.isExpanded) {
+    componentDidUpdate() {
+        this.props.isExpanded ? this.startExpandedMode() : this.startShrinkMode();
+    }
 
-            this.setState({ isExpanded: this.props.isExpanded });
-            this.props.isExpanded ? this.startExpandedMode() : this.startShrinkMode();
+    btNewNotePress = () => {
+
+        switch (this.state.start) {
+            case direction.none:
+            case direction.reverse:
+                this.setState({ start: direction.normal });
+                return;
+            case direction.normal:
+                this.setState({ start: direction.reverse });
+                return;
         }
     }
 
     render() {
 
         return (
-            <ExpandedView removeClippedSubviews={true} maxHeight={maxHeight + newNoteHeight} minHeight={minHeight} isExpanded={this.state.isExpanded} duration={this.state.duration} style={[styles.rootContainer]}>
-                <View style={styles.container}>
-                    <Animated.Text style={[styles.title, this.getOpacityStyle()]}>ATTACH NOTES</Animated.Text>
-                    <Animated.View style={[styles.circleContainer, this.getRadiusStyle()]} />
-                </View>
-
-                <View  style={styles.menuContainer}>
-                    <View style={styles.buttonsContainer}>
-                        <ButtonIcon onPress={() => { this.setState({ start: direction.reverse })}} icon="more-horizontal" color={colors.secondary}></ButtonIcon>
-                        <View style={[styles.plusContainer]}>
-                            <ButtonIcon onPress={() => { this.setState({ start: direction.normal }) }} icon="plus" color={colors.secondary}></ButtonIcon>
-                        </View>
-                        <ButtonIcon onPress={() => { }} icon="trash-2" color={colors.secondary}></ButtonIcon>
+            <View style={styles.rootContainer}>
+                <ExpandedView isExpanded={this.props.isExpanded} duration={500} maxHeight={metrics.roundHeight} minHeight={70} style={styles.menuContainer}>
+                    <View style={styles.roundContainer}>
+                        <Animated.Text style={[styles.title, this.getOpacityStyle()]}>ATTACH NOTES</Animated.Text>
+                        <Animated.View style={[styles.circleContainer, this.getRadiusStyle()]} />
                     </View>
-                    <NewNoteView start={this.state.start}></NewNoteView>
-                </View>
 
-            </ExpandedView>
+                    <View pointerEvents="box-none" style={styles.buttonsContainer}>
+                        <ButtonIcon onPress={() => { this.setState({ start: direction.reverse }) }} size={metrics.iconBig} icon="more-horizontal" color={colors.secondary}></ButtonIcon>
+                        <View style={styles.plusContainer}>
+                            <ButtonIcon size={metrics.iconBig} onPress={() => { this.btNewNotePress() }} icon="plus" color={colors.secondary}></ButtonIcon>
+                        </View>
+                        <ButtonIcon size={metrics.iconBig} onPress={() => { }} icon="trash-2" color={colors.secondary}></ButtonIcon>
+                    </View>
+                </ExpandedView>
+                <NewNoteView start={this.state.start}></NewNoteView>
+            </View>
         )
     }
 
@@ -104,6 +105,4 @@ const mapStateToProps = (state) => ({
     isExpanded: state.layout.isExpanded,
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch);
-
-export default connect(mapStateToProps, mapDispatchToProps)(Menu);
+export default connect(mapStateToProps)(Menu);

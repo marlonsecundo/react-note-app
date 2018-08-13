@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Dimensions } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import { Note } from '../../components';
-import styles, { metrics } from './styles';
-
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import styles from './styles';
 
 import * as actions from '../../redux/actions/layout';
-
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
 export class NoteList extends Component {
 
@@ -15,6 +13,8 @@ export class NoteList extends Component {
 
     constructor(props) {
         super(props);
+        this.props.setIsExpanded(true);
+
         this.state = {
             notes: [
                 {
@@ -52,7 +52,7 @@ export class NoteList extends Component {
                     showsVerticalScrollIndicator={false}
                     contentContainerStyle={styles.noteContainer}>
 
-                    <View style={this.topContainerSpace()}></View>
+                    <View style={styles.topContainer}></View>
 
                     {this.state.notes.map((value, key) => {
                         return (
@@ -61,7 +61,7 @@ export class NoteList extends Component {
                             </Note>)
                     })}
 
-                    <View style={this.bottomContainerSpace()}></View>
+                    <View style={styles.bottomContainer}></View>
 
                 </ScrollView>
             </View>
@@ -76,35 +76,15 @@ export class NoteList extends Component {
         clearTimeout(this.timerId);
 
         let id = setTimeout(() => {
-            this.props.setIsExpanded(true)
-        }, 10000);
+            this.props.setIsExpanded(true);
+        }, 20000);
 
         this.timerId = id;
-    }
-
-    topContainerSpace = () => {
-        let screenWidth = Dimensions.get("window").width - metrics.padding * 2;
-        return {
-            width: screenWidth,
-            height: this.props.headerHeight,
-        }
-    }
-
-    bottomContainerSpace = () => {
-        let screenWidth = Dimensions.get("window").width - metrics.padding * 2;
-
-        return {
-            width: screenWidth,
-            height: this.props.footerHeight,
-        }
-
     }
 }
 
 const mapStateToProps = (state) => ({
-    headerHeight: state.layout.headerHeight,
-    footerHeight: state.layout.footerHeight,
-    isExpanded: state.layout.isExpanded,
+    isExpanded : state.layout.isExpanded,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch);

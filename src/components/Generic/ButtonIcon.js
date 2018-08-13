@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/Feather';
 import { View, TouchableWithoutFeedback } from 'react-native';
 import { RippleView } from './Animation';
-import { colors, fonts } from '../../styles';
+import { colors } from '../../styles';
 
 class ButtonIcon extends React.PureComponent {
 
@@ -19,12 +19,12 @@ class ButtonIcon extends React.PureComponent {
 
     render() {
         return (
-            <TouchableWithoutFeedback onPress={() => { this.onPress() }}
+            <TouchableWithoutFeedback  onPress={() => { this.onPress() }}
                 onPressIn={() => { this.setState({ isPressIn: true, isPressOut: false }) }}
                 onPressOut={() => { this.setState({ isPressIn: false, isPressOut: true }) }}>
                 <View>
                     <RippleView isPressIn={this.state.isPressIn} isPressOut={this.state.isPressOut} color={colors.secondary} >
-                        <Icon name={this.props.icon} color={colors.secondary} size={fonts.icon}></Icon>
+                        <Icon name={this.props.icon} color={colors.secondary} size={this.props.size}></Icon>
                     </RippleView>
                 </View>
 

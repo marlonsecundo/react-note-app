@@ -50,22 +50,22 @@ class RippleView extends React.Component {
     render() {
 
         return (
-                <View onLayout={(event) => { this.onLayout(event) }}>
-                    <View style={{ padding: 10, flexGrow: 0, justifyContent: 'center', alignItems: 'center' }}>
-                        <Animated.View
-                            style={{
-                                position: 'absolute',
-                                height: this.state.size * .9,
-                                width: this.state.size * .9,
-                                transform: [{ scale: this.state.scale }],
-                                opacity: this.state.opacity,
-                                borderRadius: this.state.size / 2,
-                                backgroundColor: this.props.color || 'black',
-                            }}
-                        />
-                        {this.props.children}
-                    </View>
+            <View onLayout={(event) => { this.onLayout(event) }}>
+                <View style={{ padding: 10, flexGrow: 0, justifyContent: 'center', alignItems: 'center' }}>
+                    <Animated.View
+                        style={{
+                            position: 'absolute',
+                            height: this.state.size * .9,
+                            width: this.state.size * .9,
+                            transform: [{ scale: this.state.scale }],
+                            opacity: this.state.opacity,
+                            borderRadius: this.state.size / 2,
+                            backgroundColor: this.props.color || 'black',
+                        }}
+                    />
+                    {this.props.children}
                 </View>
+            </View>
 
         );
     }
@@ -74,7 +74,7 @@ class RippleView extends React.Component {
         let width = event.nativeEvent.layout.width;
         let height = event.nativeEvent.layout.height;
         let size = width < height ? width : height;
-        this.setState({ size: 46 })
+        this.setState({ size: size })
     }
 }
 

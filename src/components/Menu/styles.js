@@ -1,28 +1,20 @@
-import { StyleSheet, Dimensions } from 'react-native';
-import { colors, metrics, fonts, general } from '../../styles';
-
-export const screenWidth = Dimensions.get("window").width;
-export const maxHeight = screenWidth - (screenWidth / 1.5) + 2;
-export const minHeight = 70;
-export const radius = screenWidth / 2;
-export const newNoteHeight = general.newNoteHeight;
+import { StyleSheet } from 'react-native';
+import { colors, metrics, fonts } from '../../styles';
+export const radius = metrics.screen.width / 2;
 
 const styles = StyleSheet.create({
 
     rootContainer:
     {
-        ...general.container,
-        padding: 0,
-        zIndex: 1,
         position: 'absolute',
-        opacity: 1,
-        width: screenWidth,
-        marginBottom: 3,
+        width: metrics.screen.width,
+        height: metrics.headerHeight,
+        zIndex: 1,
     },
-    container:
+    roundContainer:
     {
         position: 'absolute',
-        width: screenWidth,
+        width: metrics.screen.width,
         alignItems: 'center',
         flexDirection: 'column',
     },
@@ -32,24 +24,24 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: colors.primary,
         elevation: 3,
-        minHeight: screenWidth,
-        width: screenWidth,
-        transform: [{ scaleX: 1.5 }, { translateY: - screenWidth / 1.5 }],
+        minHeight: metrics.screen.width,
+        width: metrics.screen.width,
+        transform: [{ scaleX: 1.5 }, { translateY: - metrics.screen.width / 1.5 }],
     },
     menuContainer:
     {
         flex: 1,
+        opacity: 1,
     },
     buttonsContainer:
     {
+        zIndex: 2,
         padding: 10,
         elevation: 10,
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
-        maxHeight: maxHeight,
-        minHeight: minHeight,
     },
     title:
     {
@@ -68,4 +60,4 @@ const styles = StyleSheet.create({
 });
 
 export default styles;
-export { colors, fonts };
+export { colors, fonts, metrics };

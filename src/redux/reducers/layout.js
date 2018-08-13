@@ -1,12 +1,7 @@
 import { types } from '../actions/layout';
 
-export default dataReducer = (state = {}, action) => {
+export default dataReducer = (state = { isExpanded: true }, action) => {
     switch (action.type) {
-
-        case types.setHeaderHeight:
-            return { ...state, headerHeight: action.headerHeight };
-        case types.setFooterHeight:
-            return { ...state, footerHeight: action.footerHeight };
         case types.setIsExpanded:
             return { ...state, isExpanded: action.isExpanded };
         default:

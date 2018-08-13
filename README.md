@@ -14,11 +14,12 @@ Notes app using react with redux
 * [`Transition`](https://medium.com/react-native-motion/transition-challenge-9bc9fdef56c7)
 * [`Ripple Effect`](https://medium.com/react-native-motion/ripple-effect-in-react-native-1cb0ad568e91)
 * [`React Navigation`](https://reactnavigation.org/)
+* [`Easing Functions`](https://github.com/oblador/react-native-animatable/issues/77)
 
 ## Redux
 
-* [`Intro React and Redux`] (https://blog.isquaredsoftware.com/presentations/2018-03-redux-fundamentals/)
-* [`React Native Redux Tutorial`] (https://medium.com/@mosesesan/tutorial-react-native-redux-boilerplate-4899f5c4f431)
+* [`Intro React and Redux`](https://blog.isquaredsoftware.com/presentations/2018-03-redux-fundamentals/)
+* [`React Native Redux Tutorial`](https://medium.com/@mosesesan/tutorial-react-native-redux-boilerplate-4899f5c4f431)
 * [`Rocketseat Redux Tutorial`](https://github.com/Rocketseat/youtube-codequinta-redux)
 
 ## Others Links

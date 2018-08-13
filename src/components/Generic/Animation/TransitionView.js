@@ -9,7 +9,6 @@ export const direction = {
 
 class TransitionView extends Component {
 
-
     constructor(props) {
         super(props);
         this.state = {
@@ -58,42 +57,18 @@ class TransitionView extends Component {
         }).start(() => { });
     }
 
-    interpolateTransition = () => {
-
-        let y = 0;
-
-        switch (this.props.start) {
-
-            case direction.normal:
-
-                y = this.state.anim.interpolate({
-                    inputRange: [0, .9, 1],
-                    outputRange: [this.props.startPos.y, this.props.endPos.y + 10, this.props.endPos.y]
-                })
-
-                return y;
-
-            case direction.reverse:
-
-                y = this.state.anim.interpolate({
-                    inputRange: [1, 1.1, 2],
-                    outputRange: [this.props.endPos.y, this.props.endPos.y + 10, this.props.startPos.y]
-                })
-
-                return y;
-
-            default: return y;
-        }
-    }
-
-    reset = () => {
-        this.state.anim.setValue(0);
-    }
-
 
     render() {
 
-        let y = this.interpolateTransition();
+        let y = this.state.anim.interpolate({
+            inputRange: [0, .9, 1, 1.1, 2],
+            outputRange: [
+                this.props.startPos.y,
+                this.props.endPos.y + 10,
+                this.props.endPos.y,
+                this.props.endPos.y + 10,
+                this.props.startPos.y]
+        });
 
         return (<Animated.View style={[this.props.style, {
             transform: [{ translateY: y }]
