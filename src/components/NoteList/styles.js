@@ -26,8 +26,7 @@ const styles = StyleSheet.create({
     {
         height: metrics.footerHeight,
         width: metrics.screen.width,
-    }
-
+    },
 });
 
 export default styles;

@@ -4,13 +4,14 @@ const styles = StyleSheet.create({
     container:
     {
         ...general.container,
-        borderRadius: 5,
-        flexDirection: 'column',
-        paddingBottom: 10,
-        backgroundColor: colors.primary,
-        elevation: 0.3,
         flex: 0,
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        paddingBottom: 10,
+        borderRadius: 5,
         margin: 5,
+        elevation: 0.3,
+        backgroundColor: colors.primary,
     },
     text:
     {

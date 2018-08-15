@@ -6,6 +6,7 @@ import { TransitionView } from '../Generic/Animation';
 import { connect } from 'react-redux';
 
 import styles, { colors, metrics } from './styles';
+import AlarmButton from '../AlarmButton';
 
 export class NewNoteView extends Component {
     constructor(props) {
@@ -33,7 +34,7 @@ export class NewNoteView extends Component {
                     <TextInput multiline={true} caretHidden={false} placeholderTextColor={"#FFFFFF50"} underlineColorAndroid={"#FFFFFF00"} placeholder={"Isto é algo que terei que me lembrar mais tarde..."} style={styles.input}></TextInput>
                 </View>
                 <View>
-
+                    <AlarmButton></AlarmButton>
                 </View>
             </TransitionView>
         );

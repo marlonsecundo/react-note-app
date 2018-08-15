@@ -17,35 +17,26 @@ export class Note extends Component {
 
     render() {
         return (
-            <View style={[styles.rootContainer, this.getUpdatedLayout()]}>
-                <View  style={styles.container}>
-                    <Text style={styles.text}>{this.props.children}</Text>
-                    <TouchableOpacity style={styles.btContainer}>
-                        <Text style={styles.textAlarm}>10:50</Text>
-                        <Icon name="bell" color={colors.secondary} size={metrics.iconSmall}></Icon>
-                    </TouchableOpacity>
-
-                </View>
+            <View style={[styles.container, this.getStyle(), this.props.style]}>
+                <Text style={styles.text}>{this.props.children}</Text>
+                <TouchableOpacity style={styles.btContainer}>
+                    <Text style={styles.textAlarm}>10:50</Text>
+                    <Icon name="bell" color={colors.secondary} size={metrics.iconSmall}></Icon>
+                </TouchableOpacity>
             </View>
         )
     }
 
-
-    getUpdatedLayout = () =>
-    {
-        let width = Dimensions.get('window').width - metrics.padding * 2;
-        nota = this.props.children;
-
-        width = nota.length > 50 ? width : width / 2;
-
-        let style = {
-            width: width
+    getStyle = () => {
+        let result =  (this.props.id + 1) % 3 === 0 ? {
+            width: metrics.screen.width - metrics.padding * 2 - 10,
+        } : {
+            width: (metrics.screen.width) / 2.0 - metrics.padding * 2 + 5,
         }
 
-        return style;
+        return result;
     }
 
-   
 }
 
 export default Note;

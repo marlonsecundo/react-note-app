@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, Animated, Easing } from 'react-native';
 import { Note } from '../../components';
 import styles from './styles';
 
@@ -18,22 +18,22 @@ export class NoteList extends Component {
         this.state = {
             notes: [
                 {
-                    nota: "Bom sdufb saljfsd fsdjdfs fsd wefwe wef wef wfe wf wf ",
+                    nota: "Eu sou linda",
                 },
                 {
-                    nota: "Olá sdsdfsdffsdf",
+                    nota: "Paloma é feia",
                 },
                 {
-                    nota: "Olá sdsdfsdffsdf",
+                    nota: "O sol não brilha",
                 },
                 {
-                    nota: "Bom sdufb saljfsd fsdjdfs fsd wefwe wef wef wfe wf wf ",
+                    nota: "O verde é da cor azul",
                 },
                 {
-                    nota: "Bom sdufb saljfsd fsdjdfs fsd wefwe wef wef wfe wf wf ",
+                    nota: "Free Fire é melhor que Fortnite, podi",
                 },
                 {
-                    nota: "Bom sdufb saljfsd fsdjdfs fsd wefwe wef wef wfe wf wf ",
+                    nota: "Um..... To com Fome",
                 },
                 {
                     nota: "Bom sdufb saljfsd fsdjdfs fsd wefwe wef wef wfe wf wf ",
@@ -43,7 +43,15 @@ export class NoteList extends Component {
                 },
             ]
         }
+
     }
+
+    componentDidMount = () => {
+
+   
+
+    }
+
     render() {
         return (
             <View style={styles.rootContainer}>
@@ -56,9 +64,10 @@ export class NoteList extends Component {
 
                     {this.state.notes.map((value, key) => {
                         return (
-                            <Note key={key}>
+                            <Note key={key} id={key}>
                                 {value.nota}
-                            </Note>)
+                            </Note>
+                        )
                     })}
 
                     <View style={styles.bottomContainer}></View>
@@ -81,10 +90,14 @@ export class NoteList extends Component {
 
         this.timerId = id;
     }
+
+    getAnimStyle = () => {
+
+    }
 }
 
 const mapStateToProps = (state) => ({
-    isExpanded : state.layout.isExpanded,
+    isExpanded: state.layout.isExpanded,
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch);
