@@ -33,6 +33,7 @@ const styles = StyleSheet.create({
     {
         flex: 1,
         textAlignVertical: "top",
+        color: colors.secondary
     }
 });
 

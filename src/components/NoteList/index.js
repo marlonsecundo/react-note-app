@@ -3,7 +3,7 @@ import { View, ScrollView } from 'react-native';
 import { Note } from '../../components';
 import styles from './styles';
 
-import * as actions from '../../redux/actions/layout';
+import * as actions from '../../redux/layout/actions';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -77,7 +77,7 @@ export class NoteList extends Component {
 
         let id = setTimeout(() => {
             this.props.setIsExpanded(true);
-        }, 25000);
+        }, 2500);
 
         this.timerId = id;
     }

@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import { Text, View, Dimensions, Platform } from 'react-native';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-
-import * as actions from '../../redux/actions/layout';
-import styles, { metrics } from './styles';
+import { Text, View } from 'react-native';
+import styles from './styles';
 
 export class Footer extends Component {
 

@@ -25,3 +25,4 @@ Notes app using react with redux
 ## Others Links
 * [`React Spruce`](https://github.com/prscX/react-native-spruce)
 * [`React Interactable`](https://github.com/wix/react-native-interactable)
+* [`Mistackes`](https://medium.com/dailyjs/11-mistakes-ive-made-during-react-native-redux-app-development-8544e2be9a9)

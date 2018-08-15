@@ -43,7 +43,7 @@ export class Menu extends Component {
     render() {
 
         return (
-            <View style={styles.rootContainer} onLayout={this.btNewNotePress} pointerEvents="box-none">
+            <View style={styles.rootContainer} pointerEvents="box-none">
                 <ExpandedView isExpanded={this.props.isExpanded} duration={500} maxHeight={metrics.roundHeight} minHeight={70} style={styles.menuContainer}>
                     <View pointerEvents="none" style={styles.roundContainer}>
                         <Animated.Text style={[styles.title, this.getOpacityStyle()]}>ATTACH NOTES</Animated.Text>
