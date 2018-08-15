@@ -77,7 +77,7 @@ export class NoteList extends Component {
 
         let id = setTimeout(() => {
             this.props.setIsExpanded(true);
-        }, 20000);
+        }, 25000);
 
         this.timerId = id;
     }

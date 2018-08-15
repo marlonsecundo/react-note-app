@@ -43,9 +43,9 @@ export class Menu extends Component {
     render() {
 
         return (
-            <View style={styles.rootContainer}>
+            <View style={styles.rootContainer} onLayout={this.btNewNotePress} pointerEvents="box-none">
                 <ExpandedView isExpanded={this.props.isExpanded} duration={500} maxHeight={metrics.roundHeight} minHeight={70} style={styles.menuContainer}>
-                    <View style={styles.roundContainer}>
+                    <View pointerEvents="none" style={styles.roundContainer}>
                         <Animated.Text style={[styles.title, this.getOpacityStyle()]}>ATTACH NOTES</Animated.Text>
                         <Animated.View style={[styles.circleContainer, this.getRadiusStyle()]} />
                     </View>
@@ -58,7 +58,7 @@ export class Menu extends Component {
                         <ButtonIcon size={metrics.iconBig} onPress={() => { }} icon="trash-2" color={colors.secondary}></ButtonIcon>
                     </View>
                 </ExpandedView>
-                <NewNoteView start={this.state.start}></NewNoteView>
+                <NewNoteView style={styles.newNoteView} start={this.state.start}></NewNoteView>
             </View>
         )
     }

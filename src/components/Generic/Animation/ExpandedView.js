@@ -42,10 +42,11 @@ class ExpandedView extends Component {
 
     render() {
         return (
-            <Animated.View  style={[this.props.style, {
+            <Animated.View pointerEvents="box-none" style={[this.props.style, {
                 maxHeight: this.state.height,
                 flex: 1,
             }]}>
+              
                 {this.props.children}
             </Animated.View>
         );

@@ -37,7 +37,7 @@ class ButtonIconColor extends Component {
 
     let scale = this.state.animation.interpolate({
       inputRange: [0, 0.5, 1],
-      outputRange: [1, 1.1, 1]
+      outputRange: [1, 1.3, 1]
     });
 
 

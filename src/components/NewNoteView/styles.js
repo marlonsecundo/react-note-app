@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
         backgroundColor: colors.third,
         borderBottomLeftRadius: 20,
         borderBottomRightRadius: 20,
-        zIndex: -1,
         maxHeight: metrics.newNoteHeight,
     },
     btContainer:
@@ -28,6 +27,7 @@ const styles = StyleSheet.create({
         fontFamily: fonts.family,
         fontSize: fonts.subtitle,
         color: colors.high,
+        alignSelf: 'flex-start',
     },
     input:
     {

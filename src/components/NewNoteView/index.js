@@ -24,7 +24,7 @@ export class NewNoteView extends Component {
     render() {
 
         return (
-            <TransitionView style={styles.rootContainer} {...this.getTransitionProps()} >
+            <TransitionView style={[styles.rootContainer, this.props.style]} {...this.getTransitionProps()} >
                 <Animated.View style={[styles.btContainer, this.getBtAnimStyle()]}>
                     <ButtonIconColor onPress={() => { }} size={metrics.iconMiddle} icon="check" startColor={colors.secondary} endColor={colors.high}></ButtonIconColor>
                 </Animated.View>

@@ -15,6 +15,8 @@ const styles = StyleSheet.create({
     {
         position: 'absolute',
         width: metrics.screen.width,
+        height: metrics.roundHeight,
+        flex: 1,
         alignItems: 'center',
         flexDirection: 'column',
     },
@@ -23,7 +25,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         flex: 1,
         backgroundColor: colors.primary,
-        elevation: 3,
         minHeight: metrics.screen.width,
         width: metrics.screen.width,
         transform: [{ scaleX: 1.5 }, { translateY: - metrics.screen.width / 1.5 }],
@@ -35,7 +36,6 @@ const styles = StyleSheet.create({
     },
     buttonsContainer:
     {
-        zIndex: 2,
         padding: 10,
         elevation: 10,
         flex: 1,
@@ -55,7 +55,11 @@ const styles = StyleSheet.create({
     plusContainer:
     {
         alignSelf: 'flex-end',
-    }
+    },
+    newNoteView:
+    {
+        zIndex: -1,
+    },
 
 });
 
