@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
         fontFamily: fonts.family,
         fontSize: fonts.text,
         alignSelf: 'flex-start',
+        marginBottom: 10,
     },
     btContainer:
     {
@@ -33,6 +34,8 @@ const styles = StyleSheet.create({
     {
         color: colors.secondary,
         marginRight: 5,
+        fontFamily: fonts.family,
+        fontSize: fonts.text,
     },
 
 

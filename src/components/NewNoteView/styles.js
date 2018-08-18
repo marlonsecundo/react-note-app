@@ -24,6 +24,7 @@ const styles = StyleSheet.create({
     },
     title:
     {
+        marginTop: 5,
         fontFamily: fonts.family,
         fontSize: fonts.subtitle,
         color: colors.high,
@@ -33,7 +34,13 @@ const styles = StyleSheet.create({
     {
         flex: 1,
         textAlignVertical: "top",
-        color: colors.secondary
+        color: colors.secondary,
+        fontFamily: fonts.family,
+        fontSize: fonts.text,
+    },
+    btAlarm: 
+    {
+        padding: metrics.padding,
     }
 });
 

@@ -15,6 +15,7 @@ Notes app using react with redux
 * [`Ripple Effect`](https://medium.com/react-native-motion/ripple-effect-in-react-native-1cb0ad568e91)
 * [`React Navigation`](https://reactnavigation.org/)
 * [`Easing Functions`](https://github.com/oblador/react-native-animatable/issues/77)
+* [`Animate Itens`](https://hackernoon.com/how-to-animate-the-items-of-a-react-native-flatlist-32c8cb)
 
 ## Redux
 
@@ -23,6 +24,4 @@ Notes app using react with redux
 * [`Rocketseat Redux Tutorial`](https://github.com/Rocketseat/youtube-codequinta-redux)
 
 ## Others Links
-* [`React Spruce`](https://github.com/prscX/react-native-spruce)
-* [`React Interactable`](https://github.com/wix/react-native-interactable)
-* [`Mistackes`](https://medium.com/dailyjs/11-mistakes-ive-made-during-react-native-redux-app-development-8544e2be9a9)
+* [`Mistakes`](https://medium.com/dailyjs/11-mistakes-ive-made-during-react-native-redux-app-development-8544e2be9a9)

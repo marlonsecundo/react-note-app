@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
         color: colors.secondary,
         fontFamily: fonts.family,
         fontSize: fonts.title,
-        fontStyle: 'italic',
         elevation: 4,
     },
     plusContainer:

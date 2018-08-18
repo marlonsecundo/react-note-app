@@ -1,6 +1,7 @@
 export default {
-    family: 'Consolas',
-    title: 20,
-    subtitle: 18,
-    text: 16,
+    // family: 'Alterebro Pixel Font',
+    family: 'Minecraftia',
+    title: 16,
+    subtitle: 14,
+    text: 10,
 }

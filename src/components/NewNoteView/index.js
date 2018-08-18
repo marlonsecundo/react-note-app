@@ -33,9 +33,7 @@ export class NewNoteView extends Component {
                     <Text style={styles.title}>Nova Nota</Text>
                     <TextInput multiline={true} caretHidden={false} placeholderTextColor={"#FFFFFF50"} underlineColorAndroid={"#FFFFFF00"} placeholder={"Isto é algo que terei que me lembrar mais tarde..."} style={styles.input}></TextInput>
                 </View>
-                <View>
-                    <AlarmButton></AlarmButton>
-                </View>
+                <AlarmButton style={styles.btAlarm}></AlarmButton>
             </TransitionView>
         );
     }
