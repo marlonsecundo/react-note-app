@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
         fontFamily: fonts.family,
         fontSize: fonts.text,
         alignSelf: 'flex-start',
-        marginBottom: 10,
+        marginBottom: 20,
     },
     btContainer:
     {

@@ -4,4 +4,5 @@ export default {
     secondary: "white",
     third: "#29292F",
     high: "#CDEDF6",
+    backgroundModal: "#373A414D",
 }

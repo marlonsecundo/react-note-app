@@ -25,3 +25,4 @@ Notes app using react with redux
 
 ## Others Links
 * [`Mistakes`](https://medium.com/dailyjs/11-mistakes-ive-made-during-react-native-redux-app-development-8544e2be9a9)
+* [`Hexadecimal Color Transparency`](https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4)

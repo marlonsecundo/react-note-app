@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         zIndex: 1,
         opacity: 1,
-        elevation: 7,
+        elevation: 15,
         backgroundColor: colors.primary,
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,

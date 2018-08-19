@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         flexDirection: 'column',
+
     },
     circleContainer:
     {
@@ -28,6 +29,7 @@ const styles = StyleSheet.create({
         minHeight: metrics.screen.width,
         width: metrics.screen.width,
         transform: [{ scaleX: 1.5 }, { translateY: - metrics.screen.width / 1.5 }],
+        elevation: 3,
     },
     menuContainer:
     {
