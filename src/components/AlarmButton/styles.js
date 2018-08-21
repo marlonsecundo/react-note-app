@@ -3,11 +3,14 @@ import { colors, fonts, general, metrics } from '../../styles';
 const styles = StyleSheet.create({
     rootContainer:
     {
+        alignSelf: 'flex-end',
+    },
+    container:{
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        alignSelf: 'flex-end',
-        flexWrap: 'nowrap'
+        flexWrap: 'nowrap',
+        padding: 8,
     },
     textAlarm:
     {

@@ -30,9 +30,14 @@ export class Note extends Component {
 
         return (
 
-            <TransitionView style={[styles.container, this.getStyle(), this.getAnimStyle()]} {...this.getTransitionProps()} start={this.state.transition}>
+            <TransitionView style={[styles.rootContainer, this.getAnimStyle()]} {...this.getTransitionProps()} start={this.state.transition}>
                 <Text style={styles.text}>{this.props.children}</Text>
-                <AlarmButton></AlarmButton>
+                <View style={styles.bottomContainer}>
+                    <TouchableOpacity style={styles.btTrash}>
+                        <Icon name="trash-2" color={colors.secondary} size={metrics.iconSmall}></Icon>
+                    </TouchableOpacity>
+                    <AlarmButton></AlarmButton>
+                </View>
             </TransitionView>
         )
     }
@@ -65,13 +70,6 @@ export class Note extends Component {
             outputRange: [0, 1, 0]
         }),
     })
-
-    getStyle = () => {
-        let result = (this.props.id + 1) % 3 === 0 ?
-            { width: metrics.screen.width - metrics.padding * 2 - 10, } :
-            { width: (metrics.screen.width) / 2.0 - metrics.padding * 2 + 5, }
-        return result;
-    }
 
 }
 

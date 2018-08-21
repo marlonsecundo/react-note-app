@@ -8,7 +8,7 @@ export default {
     padding: 15,
     iconBig: 26,
     iconMiddle: 20,
-    iconSmall: 13,
+    iconSmall: 15,
     newNoteHeight: 200,
     headerHeight: 325,
     minHeaderHeight: 70,

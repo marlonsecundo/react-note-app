@@ -1,12 +1,13 @@
 import { StyleSheet } from 'react-native';
 import { colors, fonts, general, metrics } from '../../styles';
 const styles = StyleSheet.create({
-    container:
+    rootContainer:
     {
         ...general.container,
         flex: 0,
         flexDirection: 'column',
         justifyContent: 'space-between',
+        width: metrics.screen.width - metrics.padding * 2 - 10,
         paddingBottom: 10,
         borderRadius: 5,
         margin: 5,
@@ -21,22 +22,15 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-start',
         marginBottom: 20,
     },
-    btContainer:
-    {
-        padding: 3,
-        flexDirection: 'row',
-        justifyContent: 'center',
+    bottomContainer: {
+        justifyContent: 'space-between',
         alignItems: 'center',
-        alignSelf: 'flex-end',
-        flexWrap: 'nowrap'
+        flexDirection: 'row',
+
     },
-    textAlarm:
-    {
-        color: colors.secondary,
-        marginRight: 5,
-        fontFamily: fonts.family,
-        fontSize: fonts.text,
-    },
+    btTrash:{
+        padding: 8,
+    }
 
 
 
