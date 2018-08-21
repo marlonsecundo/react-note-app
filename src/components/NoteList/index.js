@@ -3,7 +3,8 @@ import { View, ScrollView, Animated, Easing } from 'react-native';
 import { Note } from '../../components';
 import styles from './styles';
 
-import * as actions from '../../redux/layout/actions';
+import * as layoutActions from '../../redux/layout/actions';
+
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -14,41 +15,11 @@ export class NoteList extends Component {
     constructor(props) {
         super(props);
         this.props.setIsExpanded(true);
-
-        this.state = {
-            notes: [
-                {
-                    nota: "Eu sou linda",
-                },
-                {
-                    nota: "Paloma é feia",
-                },
-                {
-                    nota: "O sol não brilha",
-                },
-                {
-                    nota: "O verde é da cor azul",
-                },
-                {
-                    nota: "Free Fire é melhor que Fortnite, podi",
-                },
-                {
-                    nota: "Um..... To com Fome",
-                },
-                {
-                    nota: "Bom sdufb saljfsd fsdjdfs fsd wefwe wef wef wfe wf wf ",
-                },
-                {
-                    nota: "Lucca é derrotado",
-                },
-            ]
-        }
-
     }
 
     componentDidMount = () => {
 
-   
+
 
     }
 
@@ -62,10 +33,10 @@ export class NoteList extends Component {
 
                     <View style={styles.topContainer}></View>
 
-                    {this.state.notes.map((value, key) => {
+                    {this.props.notes.map((value, key) => {
                         return (
                             <Note key={key} id={key}>
-                                {value.nota}
+                                {value.text}
                             </Note>
                         )
                     })}
@@ -98,8 +69,9 @@ export class NoteList extends Component {
 
 const mapStateToProps = (state) => ({
     isExpanded: state.layout.isExpanded,
+    notes: state.notes.notes,
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators(actions, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators( layoutActions , dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(NoteList);

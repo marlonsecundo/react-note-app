@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { View, Text, TextInput, Animated, Platform, Easing } from 'react-native';
 import { ButtonIconColor } from '../Generic';
 import { TransitionView } from '../Generic/Animation';
+import AlarmButton from '../AlarmButton';
 
+import * as notesActions from '../../redux/notes/actions';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import styles, { colors, metrics } from './styles';
-import AlarmButton from '../AlarmButton';
 
 export class NewNoteView extends Component {
     constructor(props) {
@@ -14,6 +16,7 @@ export class NewNoteView extends Component {
 
         this.state = {
             anim: new Animated.Value(0),
+            text: "",
         }
     }
 
@@ -21,38 +24,25 @@ export class NewNoteView extends Component {
         this.props.isExpanded ? this.onExpanded() : this.onShrink();
     }
 
-
     render() {
 
         return (
             <TransitionView style={[styles.rootContainer, this.props.style]} {...this.getTransitionProps()} >
                 <Animated.View style={[styles.btContainer, this.getBtAnimStyle()]}>
-                    <ButtonIconColor onPress={() => { }} size={metrics.iconMiddle} icon="check" startColor={colors.secondary} endColor={colors.high}></ButtonIconColor>
+                    <ButtonIconColor onPress={this.onBtConfirmPress} size={metrics.iconMiddle} icon="check" startColor={colors.secondary} endColor={colors.high}></ButtonIconColor>
                 </Animated.View>
                 <View style={styles.container}>
                     <Text style={styles.title}>Nova Nota</Text>
-                    <TextInput multiline={true} caretHidden={false} placeholderTextColor={"#FFFFFF50"} underlineColorAndroid={"#FFFFFF00"} placeholder={"Isto é algo que terei que me lembrar mais tarde..."} style={styles.input}></TextInput>
+                    <TextInput onChangeText={this.onChangeText} multiline={true} caretHidden={false} placeholderTextColor={"#FFFFFF50"} underlineColorAndroid={"#FFFFFF00"} placeholder={"Isto é algo que terei que me lembrar mais tarde..."} style={styles.input}></TextInput>
                 </View>
                 <AlarmButton style={styles.btAlarm}></AlarmButton>
             </TransitionView>
         );
     }
 
-    getTransitionProps = () => ({
-        startPos: { x: 0, y: - metrics.newNoteHeight - 100 },
-        endPos: { x: 0, y: -50 },
-        duration: 400,
-        start: this.props.start
-    });
+    onBtConfirmPress = () => this.props.newNote(this.state.text);
 
-    getBtAnimStyle = () => ({
-        transform: [{
-            translateY: this.state.anim.interpolate({
-                inputRange: [0, 1, 2],
-                outputRange: [-50, 0, 40]
-            })
-        }]
-    });
+    onChangeText = (text) => this.setState({ text });
 
     onExpanded = () => {
 
@@ -73,10 +63,28 @@ export class NewNoteView extends Component {
             useNativeDriver: Platform.OS === "android",
         }).start();
     }
+
+    getTransitionProps = () => ({
+        startPos: { x: 0, y: - metrics.newNoteHeight - 100 },
+        endPos: { x: 0, y: -50 },
+        duration: 400,
+        start: this.props.start
+    });
+
+    getBtAnimStyle = () => ({
+        transform: [{
+            translateY: this.state.anim.interpolate({
+                inputRange: [0, 1, 2],
+                outputRange: [-50, 0, 40]
+            })
+        }]
+    });
 }
 
 const mapStateToProps = (state) => ({
     isExpanded: state.layout.isExpanded,
 });
 
-export default connect(mapStateToProps)(NewNoteView);
+const mapDispatchToProps = (dispatch) => bindActionCreators(notesActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewNoteView);
