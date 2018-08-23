@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, Animated, Easing } from 'react-native';
+import animations from '../../../styles/animations';
 
 class TransitionView extends Component {
 
@@ -27,7 +28,7 @@ class TransitionView extends Component {
         Animated.timing(this.state.anim, {
             toValue: 1,
             duration: this.props.duration,
-            easing: Easing.bezier(0.215, 0.610, 0.355, 1.000),
+            easing: animations.easeOut,
         }).start(() => { });
 
     }
@@ -39,7 +40,7 @@ class TransitionView extends Component {
         Animated.timing(this.state.anim, {
             toValue: 2,
             duration: this.props.duration,
-            easing: Easing.bezier(0.550, 0.055, 0.675, 0.190),
+            easing: animations.easeIn,
         }).start(() => { });
     }
 

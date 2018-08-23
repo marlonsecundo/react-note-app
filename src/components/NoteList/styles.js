@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     {
         height: metrics.footerHeight,
         width: metrics.screen.width,
+        marginTop: 10,
     },
 });
 

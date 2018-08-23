@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import styles, { colors, metrics } from './styles';
-import { direction } from '../Generic/Animation/TransitionView';
+import animations from '../../styles/animations';
 
 export class NewNoteView extends Component {
     constructor(props) {
@@ -55,7 +55,7 @@ export class NewNoteView extends Component {
         Animated.timing(this.state.anim, {
             toValue: 1,
             duration: 400,
-            easing: Easing.bezier(0.215, 0.610, 0.355, 1.000),
+            easing: animations.easeOut,
             useNativeDriver: Platform.OS === "android"
         }).start();
     }
@@ -64,7 +64,7 @@ export class NewNoteView extends Component {
         Animated.timing(this.state.anim, {
             toValue: 2,
             duration: 400,
-            easing: Easing.bezier(0.215, 0.610, 0.355, 1.000),
+            easing: animations.easeOut,
             useNativeDriver: Platform.OS === "android",
         }).start();
     }

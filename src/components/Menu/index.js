@@ -9,6 +9,7 @@ import { bindActionCreators } from 'redux';
 import * as layoutActions from '../../redux/layout/actions';
 
 import styles, { colors, radius, metrics } from './styles';
+import animations from '../../styles/animations';
 
 export class Menu extends Component {
 
@@ -17,7 +18,7 @@ export class Menu extends Component {
 
         this.state = {
             radius: new Animated.Value(radius),
-            duration: 500,
+            duration: 400,
             titleOpacity: new Animated.Value(1),
 
         }
@@ -35,7 +36,7 @@ export class Menu extends Component {
 
         return (
             <View style={styles.rootContainer} pointerEvents="box-none">
-                <ExpandedView isExpanded={this.props.isExpanded} duration={500} maxHeight={metrics.roundHeight} minHeight={70} style={styles.menuContainer}>
+                <ExpandedView isExpanded={this.props.isExpanded} duration={this.state.duration} maxHeight={metrics.roundHeight} minHeight={70} style={styles.menuContainer}>
                     <View pointerEvents="none" style={styles.roundContainer}>
                         <Animated.Text style={[styles.title, this.getOpacityStyle()]}>ATTACH NOTES</Animated.Text>
                         <Animated.View style={[styles.circleContainer, this.getRadiusStyle()]} />
@@ -59,10 +60,12 @@ export class Menu extends Component {
             Animated.timing(this.state.radius, {
                 toValue: 0,
                 duration: this.state.duration / 2.0,
+                easing: animations.easeOut,
             }),
             Animated.timing(this.state.titleOpacity, {
                 toValue: 0,
                 duration: this.state.duration,
+                easing: animations.easeOut,
             })
         ]).start();
     }
@@ -73,10 +76,12 @@ export class Menu extends Component {
             Animated.timing(this.state.radius, {
                 toValue: radius,
                 duration: this.state.duration * 1.1,
+                easing: animations.easeOut,
             }),
             Animated.timing(this.state.titleOpacity, {
                 toValue: 1,
-                duration: this.state.duration
+                duration: this.state.duration,
+                easing: animations.easeIn,
             })
         ]).start();
 

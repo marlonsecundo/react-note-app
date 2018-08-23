@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Animated, Easing, TouchableWithoutFeedback, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
+import animations from '../../styles/animations';
 
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 class ButtonIconColor extends Component {
@@ -22,7 +23,7 @@ class ButtonIconColor extends Component {
     Animated.timing(this.state.animation, {
       toValue: 1,
       duration: 400,
-      easing: Easing.bezier(0.215, 0.610, 0.355, 1.000),
+      easing: animations.easeOut
     }).start();
 
     this.props.onPress();

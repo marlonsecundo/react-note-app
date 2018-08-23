@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Animated, Easing } from 'react-native';
-
+import animations from '../../../styles/animations';
 import PropTypes from 'prop-types'; 
 
 class ExpandedView extends Component {
@@ -27,7 +27,7 @@ class ExpandedView extends Component {
     startExpansion() {
         Animated.timing(this.state.height, {
             toValue: this.state.maxHeight,
-            easing: Easing.bezier(.42, 0, .58, 1),
+            easing: animations.easeOut,
             duration: this.state.duration,
         }).start();
     }
@@ -35,7 +35,7 @@ class ExpandedView extends Component {
     startShrinkage() {
         Animated.timing(this.state.height, {
             toValue: this.state.minHeight,
-            easing: Easing.bezier(.42, 0, .58, 1),
+            easing: animations.easeOut,
             duration: this.state.duration,
         }).start();
     }

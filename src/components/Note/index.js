@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableOpacity, Animated, Easing } from 'react-native';
+import { Text, View, TouchableOpacity, Animated } from 'react-native';
 import AlarmButton from '../AlarmButton';
-import TransitionView, { direction } from '../Generic/Animation/TransitionView';
 import Icon from 'react-native-vector-icons/Feather';
 import styles, { colors, metrics } from './styles';
 
 import * as notesActions from '../../redux/notes/actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import animations from '../../styles/animations';
 
 export class Note extends Component {
 
@@ -29,7 +29,7 @@ export class Note extends Component {
     onBtDeletePress = () => {
         Animated.timing(this.state.anim, {
             toValue: 2,
-            easing: Easing.bezier(0.550, 0.055, 0.675, 0.190),
+            easing: animations.easeOut,
             duration: 500,
         }).start(() => {
             this.props.deleteNote(this.props.note);
@@ -57,7 +57,7 @@ export class Note extends Component {
         return {
             startPos: { x: 0, y: -50 },
             endPos: { x: 0, y: 0 },
-            duration: 1000,
+            duration: 500,
             run: this.state.isVisible
         }
     }
@@ -65,8 +65,8 @@ export class Note extends Component {
     showNote = () => {
         Animated.timing(this.state.anim, {
             toValue: 1,
-            easing: Easing.bezier(0.215, 0.610, 0.355, 1.000),
-            duration: 1500,
+            easing: animations.easeOut,
+            duration: 500,
         }).start();
     }
 
