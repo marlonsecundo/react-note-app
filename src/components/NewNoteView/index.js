@@ -5,10 +5,13 @@ import { TransitionView } from '../Generic/Animation';
 import AlarmButton from '../AlarmButton';
 
 import * as notesActions from '../../redux/notes/actions';
+import * as layoutActions from '../../redux/layout/actions';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import styles, { colors, metrics } from './styles';
+import { direction } from '../Generic/Animation/TransitionView';
 
 export class NewNoteView extends Component {
     constructor(props) {
@@ -20,7 +23,8 @@ export class NewNoteView extends Component {
         }
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
+
         this.props.isExpanded ? this.onExpanded() : this.onShrink();
     }
 
@@ -40,12 +44,14 @@ export class NewNoteView extends Component {
         );
     }
 
-    onBtConfirmPress = () => this.props.newNote(this.state.text);
+    onBtConfirmPress = () => {
+        this.props.newNote(this.state.text);
+        this.props.setVisibleNewNoteView(false);
+    }
 
     onChangeText = (text) => this.setState({ text });
 
     onExpanded = () => {
-
         Animated.timing(this.state.anim, {
             toValue: 1,
             duration: 400,
@@ -55,7 +61,6 @@ export class NewNoteView extends Component {
     }
 
     onShrink = () => {
-
         Animated.timing(this.state.anim, {
             toValue: 2,
             duration: 400,
@@ -68,7 +73,7 @@ export class NewNoteView extends Component {
         startPos: { x: 0, y: - metrics.newNoteHeight - 100 },
         endPos: { x: 0, y: -50 },
         duration: 400,
-        start: this.props.start
+        run: this.props.isVisible
     });
 
     getBtAnimStyle = () => ({
@@ -83,8 +88,9 @@ export class NewNoteView extends Component {
 
 const mapStateToProps = (state) => ({
     isExpanded: state.layout.isExpanded,
+    isVisible: state.layout.newNoteViewVisible,
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators(notesActions, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ ...notesActions, ...layoutActions }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewNoteView);

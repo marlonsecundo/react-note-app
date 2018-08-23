@@ -1,36 +1,22 @@
 import React, { Component } from 'react';
 import { View, Text, Animated, Easing } from 'react-native';
 
-export const direction = {
-    normal: 'NORMAL',
-    reverse: 'REVERSE',
-    none: 'NONE',
-}
-
 class TransitionView extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
             anim: new Animated.Value(0),
-            direction: direction.none,
-
         };
     }
 
     componentDidUpdate = (prevProps) => {
 
-        if (this.props.start !== prevProps.start) {
-            switch (this.props.start) {
-                case direction.normal:
-                    this.startNormal();
-                    this.setState({ direction: direction.normal });
-                    break;
-                case direction.reverse:
-                    this.startReverse();
-                    this.setState({ direction: direction.reverse });
-                    break;
-            }
+        if (this.props.run !== prevProps.run) {
+            if (this.props.run)
+                this.startNormal()
+            else
+                this.startReverse();
         }
     }
 

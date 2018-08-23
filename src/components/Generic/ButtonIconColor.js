@@ -21,11 +21,12 @@ class ButtonIconColor extends Component {
 
     Animated.timing(this.state.animation, {
       toValue: 1,
-      duration: 500,
+      duration: 400,
       easing: Easing.bezier(0.215, 0.610, 0.355, 1.000),
-    }).start(() => {
-      this.props.onPress();
-    });
+    }).start();
+
+    this.props.onPress();
+
   }
 
   render() {

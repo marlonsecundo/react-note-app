@@ -5,8 +5,9 @@ import { NewNoteView } from "../index";
 import { ExpandedView } from '../Generic/Animation';
 
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as layoutActions from '../../redux/layout/actions';
 
-import { direction } from '../Generic/Animation/TransitionView';
 import styles, { colors, radius, metrics } from './styles';
 
 export class Menu extends Component {
@@ -18,7 +19,6 @@ export class Menu extends Component {
             radius: new Animated.Value(radius),
             duration: 500,
             titleOpacity: new Animated.Value(1),
-            start: direction.none,
 
         }
     }
@@ -27,17 +27,8 @@ export class Menu extends Component {
         this.props.isExpanded ? this.startExpandedMode() : this.startShrinkMode();
     }
 
-    btNewNotePress = () => {
-
-        switch (this.state.start) {
-            case direction.none:
-            case direction.reverse:
-                this.setState({ start: direction.normal });
-                return;
-            case direction.normal:
-                this.setState({ start: direction.reverse });
-                return;
-        }
+    btPlusPress = () => {
+        this.props.setVisibleNewNoteView(!this.props.isNewNoteVisible);
     }
 
     render() {
@@ -51,14 +42,14 @@ export class Menu extends Component {
                     </View>
 
                     <View pointerEvents="box-none" style={styles.buttonsContainer}>
-                        <ButtonIcon onPress={() => { this.setState({ start: direction.reverse }) }} size={metrics.iconBig} icon="more-horizontal" color={colors.secondary}></ButtonIcon>
+                        <ButtonIcon onPress={() => { }} size={metrics.iconBig} icon="more-horizontal" color={colors.secondary}></ButtonIcon>
                         <View style={styles.plusContainer}>
-                            <ButtonIcon size={metrics.iconBig} onPress={() => { this.btNewNotePress() }} icon="plus" color={colors.secondary}></ButtonIcon>
+                            <ButtonIcon size={metrics.iconBig} onPress={this.btPlusPress} icon="plus" color={colors.secondary}></ButtonIcon>
                         </View>
                         <ButtonIcon size={metrics.iconBig} onPress={() => { }} icon="trash-2" color={colors.secondary}></ButtonIcon>
                     </View>
                 </ExpandedView>
-                <NewNoteView style={styles.newNoteView} start={this.state.start}></NewNoteView>
+                <NewNoteView style={styles.newNoteView}></NewNoteView>
             </View>
         )
     }
@@ -103,6 +94,9 @@ export class Menu extends Component {
 
 const mapStateToProps = (state) => ({
     isExpanded: state.layout.isExpanded,
+    isNewNoteVisible: state.layout.newNoteViewVisible
 });
 
-export default connect(mapStateToProps)(Menu);
+const mapDispatchToProps = (dispatch) => bindActionCreators(layoutActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);

@@ -7,13 +7,13 @@ export const types = {
 export function newNote(text) {
     return {
         type: types.newNote,
-        note: { text }
+        text,
     }
 }
 
-export function deleteNote(id) {
+export function deleteNote(note) {
     return {
         type: types.deleteNote,
-        id,
+        note,
     }
 }
