@@ -3,6 +3,10 @@ Notes app using react with redux
 
 # References
 
+## Javascript
+
+* [`Singleton Pattern`](https://www.sitepoint.com/javascript-design-patterns-singleton/)
+
 ## React Concepts
 
 * [`PropTypes Checking`](https://reactjs.org/docs/typechecking-with-proptypes.html)

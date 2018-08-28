@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Animated, Easing } from 'react-native';
+import { Animated } from 'react-native';
 import animations from '../../../styles/animations';
 
 class TransitionView extends Component {

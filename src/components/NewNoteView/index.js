@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Animated, Platform, Easing } from 'react-native';
+import { View, Text, TextInput, Animated, Platform } from 'react-native';
 import { ButtonIconColor } from '../Generic';
 import { TransitionView } from '../Generic/Animation';
 import AlarmButton from '../AlarmButton';
@@ -13,6 +13,8 @@ import { bindActionCreators } from 'redux';
 import styles, { colors, metrics } from './styles';
 import animations from '../../styles/animations';
 
+import Reminder from '../../modules/Reminder';
+
 export class NewNoteView extends Component {
     constructor(props) {
         super(props);
@@ -20,6 +22,8 @@ export class NewNoteView extends Component {
         this.state = {
             anim: new Animated.Value(0),
             text: "",
+            time: null,
+            id: this.generateNewId(),
         }
     }
 
@@ -27,6 +31,39 @@ export class NewNoteView extends Component {
 
         this.props.isExpanded ? this.onExpanded() : this.onShrink();
     }
+
+    generateNewId = () => {
+        return Math.random().toString().substr(2, 6);
+    }
+
+    onBtConfirmPress = () => {
+        if (this.props.isVisible) {
+
+            let note = {
+                text: this.state.text,
+                time: this.state.time,
+                id: this.state.id
+            };
+
+            if (!!this.state.time)
+                Reminder.registerNewAlarm(note)
+
+            this.props.newNote(note);
+
+            this.setState({
+                text: "",
+                time: null,
+                id: this.generateNewId(),
+            });
+        }
+
+        this.props.setVisibleNewNoteView(false);
+    }
+
+    onChangeText = (text) => this.setState({ text });
+
+    onChangeTime = (time) => this.setState({ time });
+
 
     render() {
 
@@ -39,17 +76,10 @@ export class NewNoteView extends Component {
                     <Text style={styles.title}>Nova Nota</Text>
                     <TextInput onChangeText={this.onChangeText} multiline={true} caretHidden={false} placeholderTextColor={"#FFFFFF50"} underlineColorAndroid={"#FFFFFF00"} placeholder={"Isto é algo que terei que me lembrar mais tarde..."} style={styles.input}></TextInput>
                 </View>
-                <AlarmButton style={styles.btAlarm}></AlarmButton>
+                <AlarmButton style={styles.btAlarm} id={this.state.id} onChangeTime={this.onChangeTime}></AlarmButton>
             </TransitionView>
         );
     }
-
-    onBtConfirmPress = () => {
-        this.props.newNote(this.state.text);
-        this.props.setVisibleNewNoteView(false);
-    }
-
-    onChangeText = (text) => this.setState({ text });
 
     onExpanded = () => {
         Animated.timing(this.state.anim, {

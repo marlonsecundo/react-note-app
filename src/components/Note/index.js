@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableOpacity, Animated } from 'react-native';
+import { TransitionView } from '../Generic/Animation';
 import AlarmButton from '../AlarmButton';
 import Icon from 'react-native-vector-icons/Feather';
-import styles, { colors, metrics } from './styles';
 
 import * as notesActions from '../../redux/notes/actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import animations from '../../styles/animations';
+import styles, { colors, metrics } from './styles';
 
 export class Note extends Component {
 
 
     constructor(props) {
         super(props);
+
+
         this.state = {
             anim: new Animated.Value(0),
             isVisible: false,
@@ -47,7 +51,7 @@ export class Note extends Component {
                     <TouchableOpacity style={styles.btTrash} onPress={this.onBtDeletePress}>
                         <Icon name="trash-2" color={colors.secondary} size={metrics.iconSmall}></Icon>
                     </TouchableOpacity>
-                    <AlarmButton></AlarmButton>
+                    <AlarmButton isSet={!!this.props.note.time} time={this.props.note.time} disabled={true} onChangeTime={(time) => {}} id={this.props.note.id}></AlarmButton>
                 </View>
             </TransitionView>
         )

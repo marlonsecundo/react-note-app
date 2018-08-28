@@ -4,10 +4,10 @@ export const types = {
 
 }
 
-export function newNote(text) {
+export function newNote(note) {
     return {
         type: types.newNote,
-        text,
+        note,
     }
 }
 
