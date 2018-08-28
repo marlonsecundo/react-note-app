@@ -5,8 +5,10 @@ Notes app using react with redux
 
 ## Snapshots
 
-![Main](https://github.com/marlonsecundo/react-note-app/blob/master/snapshots/snap1.png)
-![New Note](https://github.com/marlonsecundo/react-note-app/blob/master/snapshots/snap2.png)
+<p align="center">
+  <img src="https://github.com/marlonsecundo/react-note-app/blob/master/snapshots/snap1.png" height="444" width="250" />
+  <img src="https://github.com/marlonsecundo/react-note-app/blob/master/snapshots/snap2.png" height="444" width="250" />
+</p>
 
 ## References
 
