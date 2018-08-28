@@ -5,8 +5,8 @@ Notes app using react with redux
 
 ## Snapshots
 
-![Main](https://github.com/marlonsecundo/react-note-app/snapshots/snap1.png)
-![New Note](https://github.com/marlonsecundo/react-note-app/snapshots/snap2.png)
+![Main](https://github.com/marlonsecundo/react-note-app/blob/master/snapshots/snap1.png)
+![New Note](https://github.com/marlonsecundo/react-note-app/blob/master/snapshots/snap2.png)
 
 ## References
 
