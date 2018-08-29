@@ -27,6 +27,11 @@ export class NewNoteView extends Component {
         }
     }
 
+    cleanComp = () => {
+        this.refs.textInput.clear();
+        this.alarmButton.cancelAlarm();
+    }
+
     componentDidUpdate(prevProps) {
 
         this.props.isExpanded ? this.onExpanded() : this.onShrink();
@@ -36,28 +41,42 @@ export class NewNoteView extends Component {
         return Math.random().toString().substr(2, 6);
     }
 
+    createNewNote = () => {
+
+        let note = {
+            text: this.state.text,
+            time: this.state.time,
+            id: this.state.id
+        };
+
+        if (!!this.state.time)
+            Reminder.registerNewAlarm(note)
+
+        this.props.newNote(note);
+
+        this.setState({
+            text: "",
+            time: null,
+            id: this.generateNewId(),
+        });
+
+
+        this.props.setVisibleNewNoteView(false);
+
+        this.cleanComp();
+    }
+
     onBtConfirmPress = () => {
         if (this.props.isVisible) {
 
-            let note = {
-                text: this.state.text,
-                time: this.state.time,
-                id: this.state.id
-            };
+            if (this.state.text.length === 0) {
+                this.props.showAlert("Nota Vazia!");
+            }
+            else {
+                this.createNewNote();
+            }
 
-            if (!!this.state.time)
-                Reminder.registerNewAlarm(note)
-
-            this.props.newNote(note);
-
-            this.setState({
-                text: "",
-                time: null,
-                id: this.generateNewId(),
-            });
         }
-
-        this.props.setVisibleNewNoteView(false);
     }
 
     onChangeText = (text) => this.setState({ text });
@@ -74,9 +93,9 @@ export class NewNoteView extends Component {
                 </Animated.View>
                 <View style={styles.container}>
                     <Text style={styles.title}>Nova Nota</Text>
-                    <TextInput onChangeText={this.onChangeText} multiline={true} caretHidden={false} placeholderTextColor={"#FFFFFF50"} underlineColorAndroid={"#FFFFFF00"} placeholder={"Isto é algo que terei que me lembrar mais tarde..."} style={styles.input}></TextInput>
+                    <TextInput ref="textInput" onChangeText={this.onChangeText} multiline={true} caretHidden={false} placeholderTextColor={"#FFFFFF50"} underlineColorAndroid={"#FFFFFF00"} placeholder={"Isto é algo que terei que me lembrar mais tarde..."} style={styles.input}></TextInput>
                 </View>
-                <AlarmButton style={styles.btAlarm} id={this.state.id} onChangeTime={this.onChangeTime}></AlarmButton>
+                <AlarmButton onMount={(ref) => { this.alarmButton = ref; }} style={styles.btAlarm} id={this.state.id} onChangeTime={this.onChangeTime}></AlarmButton>
             </TransitionView>
         );
     }

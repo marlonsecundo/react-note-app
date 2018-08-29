@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, TimePickerAndroid } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import styles, { colors, metrics } from './styles';
-class AlarmButton extends Component {
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import * as layoutActions from '../../redux/layout/actions';
+
+export class AlarmButton extends Component {
     constructor(props) {
         super(props);
         let time = !!this.props.time ? this.props.time : { hour: 0, minute: 0 };
@@ -13,6 +19,12 @@ class AlarmButton extends Component {
             isSet: !!this.props.isSet ? this.props.isSet : false,
             disabled: !!this.props.disabled ? this.props.disabled : false,
         };
+    }
+
+    componentDidMount = () => {
+        if (!!this.props.onMount) {
+            this.props.onMount(this);
+        }
     }
 
     componentDidUpdate = () => {
@@ -28,10 +40,14 @@ class AlarmButton extends Component {
         date.setHours(hour);
         date.setMinutes(minute);
 
-        if (!!this.props.onChangeTime && date.getTime() > now.getTime()) {
+        if (date.getTime() > now.getTime()) {
             this.props.onChangeTime({ hour, minute });
             this.setState({ hour, minute, isSet: true });
         }
+        else {
+            this.props.showAlert("Defina um alarme futuro!");
+        }
+
 
     }
 
@@ -99,4 +115,6 @@ class AlarmButton extends Component {
 
 }
 
-export default AlarmButton;
+const mapDispatchToProps = (dispatch) => bindActionCreators(layoutActions, dispatch);
+
+export default connect(null, mapDispatchToProps)(AlarmButton);
