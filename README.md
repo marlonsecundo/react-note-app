@@ -35,6 +35,7 @@ Notes app using react with redux
 * [`Intro React and Redux`](https://blog.isquaredsoftware.com/presentations/2018-03-redux-fundamentals/)
 * [`React Native Redux Tutorial`](https://medium.com/@mosesesan/tutorial-react-native-redux-boilerplate-4899f5c4f431)
 * [`Rocketseat Redux Tutorial`](https://github.com/Rocketseat/youtube-codequinta-redux)
+* [`Renderless Component`](https://kyleshevlin.com/renderless-components/)
 
 ### Others Links
 * [`Mistakes`](https://medium.com/dailyjs/11-mistakes-ive-made-during-react-native-redux-app-development-8544e2be9a9)

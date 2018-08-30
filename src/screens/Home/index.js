@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import { Menu, NoteList, Footer, NewNoteView } from '../../components';
+import { View } from 'react-native';
+import { Menu, NoteList, Footer } from '../../components';
+
 import styles from './styles';
 
 export default class Home extends Component {

@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Home, Settings } from './src/screens';
+import { ToastMessage } from './src/components';
 
 import { createStackNavigator } from 'react-navigation';
 
 import { Provider } from 'react-redux';
-import store from './src/redux/store';
-import { NewNoteView, ToastMessage } from './src/components';
+import { store, persistor } from './src/redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const RootStack = createStackNavigator(
   {
@@ -32,10 +33,12 @@ export default class App extends Component<Props> {
 
     return (
       <Provider store={store}>
-        <View style={styles.container}>
-          <RootStack></RootStack>
-          <ToastMessage></ToastMessage>
-        </View>
+        <PersistGate loading={(<View></View>)} persistor={persistor}>
+          <View style={styles.container}>
+            <RootStack></RootStack>
+            <ToastMessage></ToastMessage>
+          </View>
+        </PersistGate>
       </Provider>
     );
   }
