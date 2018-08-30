@@ -15,6 +15,7 @@ Notes app using react with redux
 ### Javascript
 
 * [`Singleton Pattern`](https://www.sitepoint.com/javascript-design-patterns-singleton/)
+* [`ES6 Features`](https://github.com/lukehoban/es6features#readme)
 
 ### React Concepts
 
@@ -29,13 +30,14 @@ Notes app using react with redux
 * [`React Navigation`](https://reactnavigation.org/)
 * [`Easing Functions`](https://github.com/oblador/react-native-animatable/issues/77)
 * [`Animate Itens`](https://hackernoon.com/how-to-animate-the-items-of-a-react-native-flatlist-32c8cb)
+* [`Renderless Component`](https://kyleshevlin.com/renderless-components/)
 
 ### Redux
 
 * [`Intro React and Redux`](https://blog.isquaredsoftware.com/presentations/2018-03-redux-fundamentals/)
 * [`React Native Redux Tutorial`](https://medium.com/@mosesesan/tutorial-react-native-redux-boilerplate-4899f5c4f431)
 * [`Rocketseat Redux Tutorial`](https://github.com/Rocketseat/youtube-codequinta-redux)
-* [`Renderless Component`](https://kyleshevlin.com/renderless-components/)
+* [`Redux Persist`](https://blog.reactnativecoach.com/the-definitive-guide-to-redux-persist-84738167975)
 
 ### Others Links
 * [`Mistakes`](https://medium.com/dailyjs/11-mistakes-ive-made-during-react-native-redux-app-development-8544e2be9a9)

@@ -11,6 +11,8 @@ import { bindActionCreators } from 'redux';
 import animations from '../../styles/animations';
 import styles, { colors, metrics } from './styles';
 
+import Reminder from '../../modules/Reminder';
+
 export class Note extends Component {
 
 
@@ -29,16 +31,11 @@ export class Note extends Component {
         this.setState({ isVisible: true })
     }
 
-
-    onBtDeletePress = () => {
-        Animated.timing(this.state.anim, {
-            toValue: 2,
-            easing: animations.easeOut,
-            duration: 500,
-        }).start(() => {
-            this.props.deleteNote(this.props.note);
-        });
+    deleteNote = () => {
+        this.props.deleteNote(this.props.note);
+        Reminder.deleteAlarm(this.props.note.id);
     }
+
 
     render() {
 
@@ -51,10 +48,19 @@ export class Note extends Component {
                     <TouchableOpacity style={styles.btTrash} onPress={this.onBtDeletePress}>
                         <Icon name="trash-2" color={colors.secondary} size={metrics.iconSmall}></Icon>
                     </TouchableOpacity>
-                    <AlarmButton isSet={!!this.props.note.time} time={this.props.note.time} disabled={true} onChangeTime={(time) => {}} id={this.props.note.id}></AlarmButton>
+                    <AlarmButton isSet={!!this.props.note.time} time={this.props.note.time} disabled={true} onChangeTime={(time) => { }} id={this.props.note.id}></AlarmButton>
                 </View>
             </TransitionView>
         )
+    }
+
+
+    onBtDeletePress = () => {
+        Animated.timing(this.state.anim, {
+            toValue: 2,
+            easing: animations.easeOut,
+            duration: 500,
+        }).start(this.deleteNote);
     }
 
     getTransitionProps = () => {

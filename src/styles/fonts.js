@@ -3,5 +3,5 @@ export default {
     family: 'Minecraftia',
     title: 16,
     subtitle: 14,
-    text: 10,
+    text: 12,
 }

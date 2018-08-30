@@ -21,6 +21,7 @@ const styles = StyleSheet.create({
         fontSize: fonts.text,
         alignSelf: 'flex-start',
         marginBottom: 20,
+        paddingHorizontal: 5,
     },
     bottomContainer: {
         justifyContent: 'space-between',
@@ -29,7 +30,7 @@ const styles = StyleSheet.create({
 
     },
     btTrash:{
-        padding: 8,
+        padding: 5,
     }
 
 

@@ -34,14 +34,18 @@ export default class App extends Component<Props> {
     return (
       <Provider store={store}>
         <PersistGate loading={(<View></View>)} persistor={persistor}>
-          <View style={styles.container}>
-            <RootStack></RootStack>
-            <ToastMessage></ToastMessage>
-          </View>
+          {this.renderContent()}
         </PersistGate>
       </Provider>
     );
   }
+
+  renderContent = () => (
+    <View style={styles.container}>
+      <RootStack></RootStack>
+      <ToastMessage></ToastMessage>
+    </View>
+  );
 
 }
 

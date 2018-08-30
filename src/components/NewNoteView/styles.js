@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     btAlarm: 
     {
         padding: metrics.padding,
+        paddingTop: 5,
     }
 });
 
