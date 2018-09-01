@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { View, Animated } from 'react-native';
 import { ButtonIcon } from '../Generic';
-import { NewNoteView } from "../index";
+import { NewNoteView, Dialog } from "../index";
 import { ExpandedView } from '../Generic/Animation';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as layoutActions from '../../redux/layout/actions';
+import * as notesActions from '../../redux/notes/actions';
 
 import styles, { colors, radius, metrics } from './styles';
 import animations from '../../styles/animations';
-
 export class Menu extends Component {
 
     constructor(props) {
@@ -20,7 +20,7 @@ export class Menu extends Component {
             radius: new Animated.Value(radius),
             duration: 400,
             titleOpacity: new Animated.Value(1),
-
+            dialogVisible: false,
         }
     }
 
@@ -32,28 +32,61 @@ export class Menu extends Component {
         this.props.setVisibleNewNoteView(!this.props.isNewNoteVisible);
     }
 
+    btTrashPress = () => {
+        this.setState({ dialogVisible: true });
+    }
+
+    onCancelDialog = () => {
+        this.setState({ dialogVisible: false });
+    }
+
+    onConfirmDialog = () => {
+        this.setState({ dialogVisible: false });
+        this.props.clearNotes();
+    }
+
     render() {
 
         return (
             <View style={styles.rootContainer} pointerEvents="box-none">
                 <ExpandedView isExpanded={this.props.isExpanded} duration={this.state.duration} maxHeight={metrics.roundHeight} minHeight={70} style={styles.menuContainer}>
-                    <View pointerEvents="none" style={styles.roundContainer}>
-                        <Animated.Text style={[styles.title, this.getOpacityStyle()]}>ATTACH NOTES</Animated.Text>
-                        <Animated.View style={[styles.circleContainer, this.getRadiusStyle()]} />
-                    </View>
-
-                    <View pointerEvents="box-none" style={styles.buttonsContainer}>
-                        <ButtonIcon onPress={() => { }} size={metrics.iconBig} icon="more-horizontal" color={colors.secondary}></ButtonIcon>
-                        <View style={styles.plusContainer}>
-                            <ButtonIcon size={metrics.iconBig} onPress={this.btPlusPress} icon="plus" color={colors.secondary}></ButtonIcon>
-                        </View>
-                        <ButtonIcon size={metrics.iconBig} onPress={() => { }} icon="trash-2" color={colors.secondary}></ButtonIcon>
-                    </View>
+                    {this.renderRoundedBackground()}
+                    {this.renderMenuButtons()}
                 </ExpandedView>
                 <NewNoteView style={styles.newNoteView}></NewNoteView>
+                {this.renderDialog()}
             </View>
         )
     }
+
+    renderDialog = () => (
+        <Dialog visible={this.state.dialogVisible} onPress={this.onConfirmDialog} onCancel={this.onCancelDialog} text="Apagar todas as notas?"></Dialog>
+    )
+
+    renderRoundedBackground = () => (
+        <View pointerEvents="none" style={styles.roundContainer}>
+            <Animated.Text style={[styles.title, this.getOpacityStyle()]}>ATTACH NOTES</Animated.Text>
+            <Animated.View style={[styles.circleContainer, this.getRadiusStyle()]} />
+        </View>
+    )
+
+    renderMenuButtons = () => (
+        <View pointerEvents="box-none" style={styles.buttonsContainer}>
+            <ButtonIcon onPress={() => { }} size={metrics.iconBig} icon="more-horizontal" color={colors.secondary}></ButtonIcon>
+            <View style={styles.plusContainer}>
+                <ButtonIcon size={metrics.iconBig} onPress={this.btPlusPress} icon="plus" color={colors.secondary}></ButtonIcon>
+            </View>
+            <ButtonIcon size={metrics.iconBig} onPress={this.btTrashPress} icon="trash-2" color={colors.secondary}></ButtonIcon>
+        </View>
+    )
+
+    getRadiusStyle = () => ({
+        borderRadius: this.state.radius,
+    });
+
+    getOpacityStyle = () => ({
+        opacity: this.state.titleOpacity,
+    });
 
     startShrinkMode = () => {
         Animated.parallel([
@@ -87,14 +120,6 @@ export class Menu extends Component {
 
     }
 
-    getRadiusStyle = () => ({
-        borderRadius: this.state.radius,
-    });
-
-    getOpacityStyle = () => ({
-        opacity: this.state.titleOpacity,
-    });
-
 }
 
 const mapStateToProps = (state) => ({
@@ -102,6 +127,6 @@ const mapStateToProps = (state) => ({
     isNewNoteVisible: state.layout.newNoteViewVisible
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators(layoutActions, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ ...layoutActions, ...notesActions }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Menu);

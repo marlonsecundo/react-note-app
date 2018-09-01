@@ -4,5 +4,6 @@ import Note from './Note';
 import Footer from './Footer';
 import NewNoteView from './NewNoteView';
 import ToastMessage from './ToastMessage';
+import Dialog from './Dialog';
 
-export { Menu, NoteList, Note, Footer, NewNoteView, ToastMessage };
+export { Menu, NoteList, Note, Footer, NewNoteView, ToastMessage, Dialog };

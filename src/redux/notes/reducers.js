@@ -8,8 +8,9 @@ export default dataReducer = (state = { notes: [] }, action) => {
             let notes = state.notes.filter((note) => {
                 return note !== action.note;
             });
-
             return { notes: [...notes] }
+        case types.clearNotes:
+            return { notes: [] }
         default:
             return state;
     }
