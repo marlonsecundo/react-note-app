@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { Menu, NoteList, Footer } from '../../components';
+import { Menu, NoteList, ClearNotes } from '../../components';
 
 import styles from './styles';
 
@@ -22,7 +22,7 @@ export default class Home extends Component {
             <View style={[styles.rootContainer, this.state.style]} onLayout={(event) => { this.onLayout() }}>
                 <Menu></Menu>
                 <NoteList></NoteList>
-                <Footer></Footer>
+                <ClearNotes></ClearNotes>
             </View>
         );
     }

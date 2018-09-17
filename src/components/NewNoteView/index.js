@@ -16,6 +16,9 @@ import animations from '../../styles/animations';
 import Reminder from '../../modules/Reminder';
 
 export class NewNoteView extends Component {
+
+    reminder = new Reminder();
+
     constructor(props) {
         super(props);
 
@@ -50,7 +53,7 @@ export class NewNoteView extends Component {
         };
 
         if (!!this.state.time)
-            Reminder.registerNewAlarm(note)
+            this.reminder.registerNewNoteAlarm(note);
 
         this.props.newNote(note);
 

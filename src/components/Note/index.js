@@ -15,6 +15,7 @@ import Reminder from '../../modules/Reminder';
 
 export class Note extends Component {
 
+    reminder = new Reminder();
 
     constructor(props) {
         super(props);
@@ -33,7 +34,7 @@ export class Note extends Component {
 
     deleteNote = () => {
         this.props.deleteNote(this.props.note);
-        Reminder.deleteAlarm(this.props.note.id);
+        this.reminder.deleteAlarm(this.props.note.id);
     }
 
 

@@ -35,7 +35,7 @@ export default class App extends Component<Props> {
       <Provider store={store}>
         <PersistGate loading={(<View></View>)} persistor={persistor}>
           {this.renderContent()}
-        </PersistGate>
+       </PersistGate>
       </Provider>
     );
   }

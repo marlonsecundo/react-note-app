@@ -13,6 +13,8 @@ const styles = StyleSheet.create({
         height: metrics.footerHeight,
         width: metrics.screen.width,
         top: metrics.screen.height - metrics.footerHeight,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     container:
     {
@@ -21,7 +23,7 @@ const styles = StyleSheet.create({
     text:
     {
         color: colors.secondary,
-        fontSize: fonts.text,
+        fontSize: fonts.footer,
         textAlign: 'center',
         fontFamily: fonts.family,
     }

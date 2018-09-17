@@ -31,6 +31,7 @@ Notes app using react with redux
 * [`Easing Functions`](https://github.com/oblador/react-native-animatable/issues/77)
 * [`Animate Itens`](https://hackernoon.com/how-to-animate-the-items-of-a-react-native-flatlist-32c8cb)
 * [`Renderless Component`](https://kyleshevlin.com/renderless-components/)
+* [`React Queue`](https://github.com/billmalarky/react-native-queue)
 
 ### Redux
 

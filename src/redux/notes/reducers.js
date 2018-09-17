@@ -1,16 +1,20 @@
 import { types } from './actions';
 
-export default dataReducer = (state = { notes: [] }, action) => {
+const defaultState = { notes: [], lastDay: null }
+
+export default dataReducer = (state = defaultState, action) => {
     switch (action.type) {
         case types.newNote:
-            return { notes: [...state.notes, action.note] }
+            return { ...state, notes: [...state.notes, action.note] }
         case types.deleteNote:
             let notes = state.notes.filter((note) => {
                 return note !== action.note;
             });
-            return { notes: [...notes] }
+            return { ...state, notes: [...notes] }
         case types.clearNotes:
-            return { notes: [] }
+            return { ...state, notes: [] }
+        case types.addLastDay:
+            return { ...state, lastDay: action.day }
         default:
             return state;
     }

@@ -1,24 +1,43 @@
 import PushNotification from 'react-native-push-notification';
+import { Alert } from 'react-native';
 import colors from '../styles/colors';
 
-class Reminder {
+export default class Reminder {
 
-    constructor() {
-        if (!Reminder.instance) {
-            Reminder.instance = this;
-            PushNotification.configure({
-                permissions: {
-                    alert: true,
-                    badge: true,
-                    sound: true
-                },
+    config = {
 
-                popInitialNotification: true,
-                requestPermissions: true,
-            });
-        }
+        ticker: "Attach Notes",
+        autoCancel: false,
+        largeIcon: 'ic_launcher',
+        smallIcon: 'ic_notification',
+        bigText: 'Lembrete',
+        color: colors.background,
+        vibrate: true,
+        vibration: 500,
+        tag: 'Lembretes',
+        group: 'groud',
+        ongoing: false,
+        playSound: true,
+        soundName: 'default',
+        number: 9,
+        actions: '["Ahh, Vou Ver!"]',
+        subText: 'Attach Notes',
 
-        return Reminder.instance;
+    };
+
+    constructor(onNotif = () => {}) {
+        PushNotification.configure({
+            permissions: {
+                alert: true,
+                badge: true,
+                sound: true
+            },
+
+            onNotification: onNotif,
+
+            popInitialNotification: true,
+            requestPermissions: true,
+        });
     }
 
     getTimeLeft = (time) => {
@@ -33,35 +52,22 @@ class Reminder {
         return left;
     }
 
-    registerNewAlarm = (note) => {
+    registerNewNoteAlarm = (note) => {
 
         let timeLeft = this.getTimeLeft(note.time);
 
         PushNotification.localNotificationSchedule({
+            ...this.config,
+
             id: note.id,
             userInfo: { id: note.id },
-            ticker: "My Notification Ticker",
-            autoCancel: false,
-            largeIcon: 'ic_launcher',
-            smallIcon: 'ic_notification',
-            bigText: 'Lembrete',
-            subText: 'subText',
-            color: colors.background,
-            vibrate: true,
-            vibration: 500,
-            tag: 'Daily Notes',
-            group: 'groud',
-            ongoing: false,
+            bigText: 'Lembrete!',
             title: 'Se liga naquela Nota lá!',
             message: note.text,
-            playSound: true,
-            soundName: 'default',
-            number: 9,
-            actions: '["Ahh, Vou Ver!"]',
-
             date: new Date(Date.now() + timeLeft),
         });
     }
+
 
     deleteAlarm = (id) => {
         PushNotification.cancelLocalNotifications({ id });
@@ -69,9 +75,3 @@ class Reminder {
 
 
 }
-
-const instance = new Reminder();
-
-Object.freeze(instance);
-
-export default instance;

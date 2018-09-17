@@ -4,4 +4,5 @@ export default {
     title: 16,
     subtitle: 14,
     text: 12,
+    footer: 10
 }
