@@ -18,7 +18,7 @@ export default class Home extends Component {
     }
 
     openMenu = () => {
-        this.props.navigation.navigate('SettingsScreen');
+        this.props.navigation.navigate('AboutScreen');
     }
 
     render() {

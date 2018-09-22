@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Home, Settings } from './src/screens';
+import { Home, About } from './src/screens';
 import { ToastMessage } from './src/components';
 
 import { createStackNavigator } from 'react-navigation';
@@ -12,7 +12,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 const RootStack = createStackNavigator(
   {
     HomeScreen: Home,
-    SettingsScreen: Settings
+    AboutScreen: About
   },
   {
     initialRouteName: 'HomeScreen',
