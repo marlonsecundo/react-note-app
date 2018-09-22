@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Modal, View, Text } from 'react-native';
 import styles from './styles';
 
-import * as layoutActions from '../../redux/layout/actions';
+import * as layoutActions from '../../redux/actions/layout.actions';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';

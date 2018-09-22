@@ -12,10 +12,33 @@ export class ClearNotes extends Component {
 
   constructor(props) {
     super(props);
+
+
+
+    this.state = {
+      leftTime: this.getLeftTime().toTimeString().split(" ")[0],
+    }
+
+    setInterval(() => {
+      this.updateComp();
+    }, 1000);
   }
 
+  getLeftTime = () => {
+    let end = new Date(Date.now());
+    end.setHours(24, 0, 0, 0);
+    return new Date(end.getTime() - Date.now());
+  }
 
   componentDidMount = () => {
+    this.clearAllNotes();
+  }
+
+  updateComp = () => {
+    this.setState({ leftTime: this.getLeftTime().toTimeString().split(" ")[0] });
+  }
+
+  clearAllNotes = () => {
     let today = new Date(Date.now()).getDate();
 
     if (today !== this.props.lastDay) {
@@ -28,7 +51,7 @@ export class ClearNotes extends Component {
     return (
       <View style={styles.rootContainer} >
         <View style={styles.container}>
-          <Text style={styles.text}>As notas serão excluídas em 5h</Text>
+          <Text style={styles.text}>As notas serão excluídas em {this.state.leftTime}</Text>
         </View>
       </View>
     )

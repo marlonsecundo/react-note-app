@@ -6,7 +6,7 @@ import styles, { colors, metrics } from './styles';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import * as layoutActions from '../../redux/layout/actions';
+import * as layoutActions from '../../redux/actions/layout.actions';
 
 export class AlarmButton extends Component {
     constructor(props) {

@@ -20,6 +20,7 @@ Notes app using react with redux
 ### React Concepts
 
 * [`PropTypes Checking`](https://reactjs.org/docs/typechecking-with-proptypes.html)
+* [`Folder Structure`](https://tableless.com.br/como-evitar-que-seu-app-react-com-redux-vire-um-ninho-de-rato/)
 
 ### UI
 

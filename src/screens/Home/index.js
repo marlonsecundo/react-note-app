@@ -17,10 +17,14 @@ export default class Home extends Component {
         }
     }
 
+    openMenu = () => {
+        this.props.navigation.navigate('SettingsScreen');
+    }
+
     render() {
         return (
             <View style={[styles.rootContainer, this.state.style]} onLayout={(event) => { this.onLayout() }}>
-                <Menu></Menu>
+                <Menu openMenu={this.openMenu}></Menu>
                 <NoteList></NoteList>
                 <ClearNotes></ClearNotes>
             </View>

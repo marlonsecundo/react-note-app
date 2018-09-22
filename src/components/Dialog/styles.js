@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
         fontSize: fonts.subtitle,
         fontFamily: fonts.family,
         color: colors.secondary,
+        paddingVertical: 20,
     }
 });
 

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, Animated, Platform } from 'react-native';
+import { View, Keyboard, Text, TextInput, Animated, Platform } from 'react-native';
 import { ButtonIconColor } from '../Generic';
 import { TransitionView } from '../Generic/Animation';
 import AlarmButton from '../AlarmButton';
 
-import * as notesActions from '../../redux/notes/actions';
-import * as layoutActions from '../../redux/layout/actions';
+import * as notesActions from '../../redux/actions/notes.actions';
+import * as layoutActions from '../../redux/actions/layout.actions';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -77,6 +77,7 @@ export class NewNoteView extends Component {
             }
             else {
                 this.createNewNote();
+                Keyboard.dismiss();
             }
 
         }

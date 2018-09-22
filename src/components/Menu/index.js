@@ -6,8 +6,8 @@ import { ExpandedView } from '../Generic/Animation';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as layoutActions from '../../redux/layout/actions';
-import * as notesActions from '../../redux/notes/actions';
+import * as layoutActions from '../../redux/actions/layout.actions';
+import * as notesActions from '../../redux/actions/notes.actions';
 
 import styles, { colors, radius, metrics } from './styles';
 import animations from '../../styles/animations';
@@ -72,7 +72,7 @@ export class Menu extends Component {
 
     renderMenuButtons = () => (
         <View pointerEvents="box-none" style={styles.buttonsContainer}>
-            <ButtonIcon onPress={() => { }} size={metrics.iconBig} icon="more-horizontal" color={colors.secondary}></ButtonIcon>
+            <ButtonIcon onPress={this.props.openMenu} size={metrics.iconBig} icon="more-horizontal" color={colors.secondary}></ButtonIcon>
             <View style={styles.plusContainer}>
                 <ButtonIcon size={metrics.iconBig} onPress={this.btPlusPress} icon="plus" color={colors.secondary}></ButtonIcon>
             </View>

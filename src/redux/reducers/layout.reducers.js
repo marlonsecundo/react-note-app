@@ -1,4 +1,4 @@
-import { types } from './actions';
+import { types } from '../actions/layout.actions';
 
 const defaultState = { isExpanded: true, newNoteViewVisible: false, alert: { text: "", visible: false } };
 
