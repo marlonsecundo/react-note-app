@@ -4,7 +4,7 @@ import styles from './styles';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as notesActions from '../../redux/notes/actions';
+import * as notesActions from '../../redux/actions/notes.actions';
 
 
 export class ClearNotes extends Component {

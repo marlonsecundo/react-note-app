@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
         fontFamily: fonts.family,
         margin: metrics.padding,
         alignSelf: 'flex-start',
-        marginBottom: 30,
+        marginBottom: 40,
 
     },
     image: {
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         fontSize: fonts.title,
         color: colors.secondary,
         margin: metrics.padding,
-        marginBottom: 30,
+        marginBottom: 40,
 
     },
     rate: {

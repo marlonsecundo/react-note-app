@@ -4,7 +4,7 @@ import { TransitionView } from '../Generic/Animation';
 import AlarmButton from '../AlarmButton';
 import Icon from 'react-native-vector-icons/Feather';
 
-import * as notesActions from '../../redux/notes/actions';
+import * as notesActions from '../../redux/actions/notes.actions';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 

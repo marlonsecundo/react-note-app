@@ -65,7 +65,7 @@ export class Menu extends Component {
 
     renderRoundedBackground = () => (
         <View pointerEvents="none" style={styles.roundContainer}>
-            <Animated.Text style={[styles.title, this.getOpacityStyle()]}>ATTACH NOTES</Animated.Text>
+            <Animated.Text style={[styles.title, this.getOpacityStyle()]}>MIND NOTES</Animated.Text>
             <Animated.View style={[styles.circleContainer, this.getRadiusStyle()]} />
         </View>
     )

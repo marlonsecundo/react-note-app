@@ -9,6 +9,8 @@ import { Provider } from 'react-redux';
 import { store, persistor } from './src/redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 
+import SplashScreen from 'react-native-splash-screen';
+
 const RootStack = createStackNavigator(
   {
     HomeScreen: Home,
@@ -46,6 +48,12 @@ export default class App extends Component<Props> {
       <ToastMessage></ToastMessage>
     </View>
   );
+
+  componentDidMount() {
+    setTimeout( ()=> {
+      SplashScreen.hide();
+    }, 3000);
+  }
 
 }
 

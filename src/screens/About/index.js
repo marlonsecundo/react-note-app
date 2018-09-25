@@ -17,7 +17,6 @@ export class About extends Component {
         <Text style={styles.rate}>Me ajude avaliando este app! :P</Text>
 
 
-
       </View>
     )
   }
