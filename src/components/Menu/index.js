@@ -72,11 +72,11 @@ export class Menu extends Component {
 
     renderMenuButtons = () => (
         <View pointerEvents="box-none" style={styles.buttonsContainer}>
-            <ButtonIcon onPress={this.props.openMenu} size={metrics.iconBig} icon="more-horizontal" color={colors.secondary}></ButtonIcon>
+            <ButtonIcon rippleColor={colors.secondary} onPress={this.props.openMenu} size={metrics.iconBig} icon="more-horizontal" color={colors.secondary}></ButtonIcon>
             <View style={styles.plusContainer}>
-                <ButtonIcon size={metrics.iconBig} onPress={this.btPlusPress} icon="plus" color={colors.secondary}></ButtonIcon>
+                <ButtonIcon rippleColor={colors.secondary} size={metrics.iconBig} onPress={this.btPlusPress} icon="plus" color={colors.secondary}></ButtonIcon>
             </View>
-            <ButtonIcon size={metrics.iconBig} onPress={this.btTrashPress} icon="trash-2" color={colors.secondary}></ButtonIcon>
+            <ButtonIcon rippleColor={colors.secondary} size={metrics.iconBig} onPress={this.btTrashPress} icon="trash-2" color={colors.secondary}></ButtonIcon>
         </View>
     )
 

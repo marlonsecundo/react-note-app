@@ -2,6 +2,7 @@ package com.attach;
 
 import android.app.Application;
 
+import com.oblador.vectoricons.VectorIconsPackage;
 import com.facebook.react.ReactApplication;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import io.realm.react.RealmReactPackage;
@@ -28,7 +29,8 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new SplashScreenReactPackage(),
             new RealmReactPackage(),
-            new ReactNativePushNotificationPackage()
+            new ReactNativePushNotificationPackage(),
+            new VectorIconsPackage()
       );
     }
 

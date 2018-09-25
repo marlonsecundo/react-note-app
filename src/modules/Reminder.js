@@ -8,8 +8,8 @@ export default class Reminder {
 
         ticker: "Attach Notes",
         autoCancel: false,
-        largeIcon: 'ic_launcher',
-        smallIcon: 'ic_notification',
+        largeIcon: 'icon',
+        smallIcon: 'icon',
         bigText: 'Lembrete',
         color: colors.background,
         vibrate: true,

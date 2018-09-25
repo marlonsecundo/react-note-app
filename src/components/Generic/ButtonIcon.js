@@ -23,8 +23,8 @@ class ButtonIcon extends React.PureComponent {
                 onPressIn={() => { this.setState({ isPressIn: true, isPressOut: false }) }}
                 onPressOut={() => { this.setState({ isPressIn: false, isPressOut: true }) }}>
                 <View>
-                    <RippleView isPressIn={this.state.isPressIn} isPressOut={this.state.isPressOut} color={colors.secondary} >
-                        <Icon name={this.props.icon} color={colors.secondary} size={this.props.size}></Icon>
+                    <RippleView isPressIn={this.state.isPressIn} isPressOut={this.state.isPressOut} color={this.props.rippleColor} >
+                        <Icon name={this.props.icon} color={this.props.color} size={this.props.size}></Icon>
                     </RippleView>
                 </View>
 

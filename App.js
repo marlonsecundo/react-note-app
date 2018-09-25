@@ -11,6 +11,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import SplashScreen from 'react-native-splash-screen';
 
+import transitionConfig from './src/modules/TransitionConfig';
+
 const RootStack = createStackNavigator(
   {
     HomeScreen: Home,
@@ -18,8 +20,9 @@ const RootStack = createStackNavigator(
   },
   {
     initialRouteName: 'HomeScreen',
-    mode: 'modal',
+    mode: 'card',
     headerMode: 'none',
+    transitionConfig,
   }
 );
 

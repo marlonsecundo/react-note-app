@@ -33,6 +33,8 @@ Notes app using react with redux
 * [`Animate Itens`](https://hackernoon.com/how-to-animate-the-items-of-a-react-native-flatlist-32c8cb)
 * [`Renderless Component`](https://kyleshevlin.com/renderless-components/)
 * [`React Queue`](https://github.com/billmalarky/react-native-queue)
+* [`Splashscreen`](https://medium.com/@scottianstewart/react-native-add-app-icons-and-launch-screens-onto-ios-and-android-apps-3bfbc20b7d4c)
+* [`Custom Transition`](https://medium.com/async-la/custom-transitions-in-react-navigation-2f759408a053)
 
 ### Redux
 

@@ -51,16 +51,16 @@ class RippleView extends React.Component {
 
         return (
             <View onLayout={(event) => { this.onLayout(event) }}>
-                <View style={{ padding: 10, flexGrow: 0, justifyContent: 'center', alignItems: 'center' }}>
+                <View style={{ padding: 13, flexGrow: 0, justifyContent: 'center', alignItems: 'center' }}>
                     <Animated.View
                         style={{
                             position: 'absolute',
-                            height: this.state.size * .9,
-                            width: this.state.size * .9,
+                            height: this.state.size * 0.9,
+                            width: this.state.size * 0.9,
                             transform: [{ scale: this.state.scale }],
                             opacity: this.state.opacity,
                             borderRadius: this.state.size / 2,
-                            backgroundColor: this.props.color || 'black',
+                            backgroundColor: this.props.color,
                         }}
                     />
                     {this.props.children}
